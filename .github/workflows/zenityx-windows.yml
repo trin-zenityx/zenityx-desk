@@ -2,8 +2,8 @@ name: Build ZenityX Desk (Windows)
 
 # Self-contained Windows build for the ZenityX Desk fork.
 # Bridge files are committed, so no flutter_rust_bridge codegen step is needed.
-# Trigger manually:  gh workflow run zenityx-windows.yml  (or the Actions tab).
-# Inputs are limited to workflow_dispatch + env vars only (no untrusted github.event data).
+# Trigger manually:  gh workflow run zenityx-windows.yml
+# Inputs limited to workflow_dispatch + env vars only (no untrusted github.event data).
 
 on:
   workflow_dispatch:
@@ -35,11 +35,13 @@ jobs:
 
       - name: Replace engine with RustDesk custom flutter engine
         run: |
-          flutter doctor -v
           flutter precache --windows
           Invoke-WebRequest -Uri https://github.com/rustdesk/engine/releases/download/main/windows-x64-release.zip -OutFile windows-x64-release.zip
           Expand-Archive -Path windows-x64-release.zip -DestinationPath windows-x64-release
-          mv -Force windows-x64-release/* C:/hostedtoolcache/windows/flutter/stable-${{ env.FLUTTER_VERSION }}-x64/bin/cache/artifacts/engine/windows-x64-release/
+          $engineDir = "$env:FLUTTER_ROOT/bin/cache/artifacts/engine/windows-x64-release"
+          New-Item -ItemType Directory -Force -Path $engineDir | Out-Null
+          mv -Force windows-x64-release/* "$engineDir/"
+          Write-Host "engine replaced at $engineDir"
 
       - name: Patch flutter (dropdown enableFilter)
         shell: bash
