@@ -81,10 +81,6 @@ class _DesktopHomePageState extends State<DesktopHomePage>
     final isOutgoingOnly = bind.isOutgoingOnly();
     final children = <Widget>[
       if (!isOutgoingOnly) buildPresetPasswordWarning(),
-      Align(
-        alignment: Alignment.center,
-        child: loadLogo(),
-      ),
       buildTip(context),
       if (!isOutgoingOnly) buildIDBoard(context),
       if (!isOutgoingOnly) buildPasswordBoard(context),
@@ -142,6 +138,20 @@ class _DesktopHomePageState extends State<DesktopHomePage>
                 Expanded(child: Container())
               ],
             ),
+            if (!isOutgoingOnly)
+              Positioned(
+                bottom: 10,
+                left: 14,
+                child: Opacity(
+                  opacity: 0.6,
+                  child: Image.asset(
+                    'assets/logo.png',
+                    height: 22,
+                    fit: BoxFit.contain,
+                    errorBuilder: (ctx, e, s) => const SizedBox.shrink(),
+                  ),
+                ),
+              ),
             if (isOutgoingOnly)
               Positioned(
                 bottom: 6,
