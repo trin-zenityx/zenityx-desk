@@ -522,7 +522,12 @@ class _DesktopTabState extends State<DesktopTab>
                 SizedBox(
                   height:
                       showBottomDivider ? _kTabBarHeight - 1 : _kTabBarHeight,
-                  child: _buildBar(),
+                  child: ColoredBox(
+                    color: (isMainWindow && tabType == DesktopTabType.main)
+                        ? const Color(0xFF1C1C1E)
+                        : Colors.transparent,
+                    child: _buildBar(),
+                  ),
                 ),
                 if (showBottomDivider)
                   const Divider(
@@ -631,11 +636,23 @@ class _DesktopTabState extends State<DesktopTab>
                         child: const SizedBox(
                           width: 78,
                         )),
+                    if (isMainWindow && tabType == DesktopTabType.main)
+                      Padding(
+                        padding: const EdgeInsets.only(left: 6, right: 8),
+                        child: Image.asset(
+                          'assets/logo-dark.png',
+                          height: 18,
+                          fit: BoxFit.contain,
+                          errorBuilder: (c, e, s) => const SizedBox.shrink(),
+                        ),
+                      ),
                     Offstage(
                       offstage: kUseCompatibleUiMode || isMacOS,
                       child: Row(children: [
                         Offstage(
-                          offstage: !showLogo,
+                          offstage: !showLogo ||
+                              (isMainWindow &&
+                                  tabType == DesktopTabType.main),
                           child: loadIcon(16),
                         ),
                         Offstage(
