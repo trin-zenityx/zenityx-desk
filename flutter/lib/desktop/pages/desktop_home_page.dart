@@ -138,20 +138,6 @@ class _DesktopHomePageState extends State<DesktopHomePage>
                 Expanded(child: Container())
               ],
             ),
-            if (!isOutgoingOnly)
-              Positioned(
-                bottom: 10,
-                left: 14,
-                child: Opacity(
-                  opacity: 0.6,
-                  child: Image.asset(
-                    'assets/logo.png',
-                    height: 22,
-                    fit: BoxFit.contain,
-                    errorBuilder: (ctx, e, s) => const SizedBox.shrink(),
-                  ),
-                ),
-              ),
             if (isOutgoingOnly)
               Positioned(
                 bottom: 6,

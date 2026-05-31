@@ -636,16 +636,6 @@ class _DesktopTabState extends State<DesktopTab>
                         child: const SizedBox(
                           width: 78,
                         )),
-                    if (isMainWindow && tabType == DesktopTabType.main)
-                      Padding(
-                        padding: const EdgeInsets.only(left: 6, right: 8),
-                        child: Image.asset(
-                          'assets/logo-dark.png',
-                          height: 18,
-                          fit: BoxFit.contain,
-                          errorBuilder: (c, e, s) => const SizedBox.shrink(),
-                        ),
-                      ),
                     Offstage(
                       offstage: kUseCompatibleUiMode || isMacOS,
                       child: Row(children: [
@@ -696,6 +686,16 @@ class _DesktopTabState extends State<DesktopTab>
                                   unSelectedTabBackgroundColor,
                               selectedBorderColor: selectedBorderColor,
                             ))),
+                    if (isMainWindow && tabType == DesktopTabType.main)
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8, right: 10),
+                        child: Image.asset(
+                          'assets/logo-dark.png',
+                          height: 18,
+                          fit: BoxFit.contain,
+                          errorBuilder: (c, e, s) => const SizedBox.shrink(),
+                        ),
+                      ),
                   ],
                 ))),
         // hide simulated action buttons when we in compatible ui mode, because of reusing system title bar.
