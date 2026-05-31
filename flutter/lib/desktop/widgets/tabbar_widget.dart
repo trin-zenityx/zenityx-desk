@@ -515,13 +515,15 @@ class _DesktopTabState extends State<DesktopTab>
         if (stateGlobal.showTabBar.isTrue &&
             !(kUseCompatibleUiMode && isHideSingleItem())) {
           final showBottomDivider = _showTabBarBottomDivider(tabType);
+          final bool isMainHome =
+              isMainWindow && tabType == DesktopTabType.main;
+          final double barH = isMainHome ? 34.0 : _kTabBarHeight;
           return SizedBox(
-            height: _kTabBarHeight,
+            height: barH,
             child: Column(
               children: [
                 SizedBox(
-                  height:
-                      showBottomDivider ? _kTabBarHeight - 1 : _kTabBarHeight,
+                  height: showBottomDivider ? barH - 1 : barH,
                   child: ColoredBox(
                     color: (isMainWindow && tabType == DesktopTabType.main)
                         ? const Color(0xFF1C1C1E)
@@ -688,7 +690,7 @@ class _DesktopTabState extends State<DesktopTab>
                             ))),
                     if (isMainWindow && tabType == DesktopTabType.main)
                       Padding(
-                        padding: const EdgeInsets.only(left: 8, right: 10),
+                        padding: const EdgeInsets.only(left: 8, right: 3),
                         child: Image.asset(
                           'assets/logo-dark.png',
                           height: 18,
