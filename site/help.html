@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ความช่วยเหลือ — ZenityX Desk</title>
+<meta name="description" content="วิธีใช้งาน ZenityX Desk — เชื่อมต่อ ให้สิทธิ์ และแก้ปัญหาเบื้องต้น">
+<link rel="icon" href="assets/app-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--red:#FF2222;--red-deep:#CC0000;--ink:#1d1d1f;--sub:#6e6e73;--hair:#e8e8ed;--bg2:#fafafa;
+    --sf:-apple-system,BlinkMacSystemFont,"IBM Plex Sans Thai",sans-serif;--th:"IBM Plex Sans Thai",-apple-system,"Sarabun",sans-serif}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+  body{font-family:var(--th);color:var(--ink);background:#fff;line-height:1.55;font-size:17px}
+  .wrap{max-width:820px;margin:0 auto;padding:0 28px}
+  h1,h2,h3{font-family:var(--th);font-weight:700;letter-spacing:-.02em;line-height:1.15}
+  a{color:var(--red);text-decoration:none}a:hover{text-decoration:underline}
+  nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.8);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--hair)}
+  nav .wrap{max-width:1040px;display:flex;align-items:center;justify-content:space-between;height:56px}
+  nav .logo{height:24px}nav .links{display:flex;gap:30px;font-size:15px;font-weight:500}
+  nav .links a{color:var(--sub)}nav .links a:hover{color:var(--ink);text-decoration:none}
+  @media(max-width:720px){nav .links{display:none}}
+  .hd{text-align:center;padding:72px 0 40px;border-bottom:1px solid var(--hair);background:radial-gradient(120% 90% at 50% 0%,#fff 45%,#fff5f5 100%)}
+  .hd img{height:90px;margin-bottom:18px}
+  .hd .eyebrow{font-size:15px;font-weight:600;color:var(--red);margin-bottom:10px}
+  .hd h1{font-size:44px}
+  main{padding:56px 0 80px}
+  .qa{border-bottom:1px solid var(--hair);padding:30px 0}
+  .qa:last-child{border-bottom:0}
+  .qa h2{font-size:26px;margin-bottom:14px}
+  .qa h3{font-size:18px;margin:18px 0 8px}
+  .qa p{color:#3a3a3c;margin-bottom:10px}
+  ol,ul{padding-left:22px;color:#3a3a3c}li{margin-bottom:7px}
+  .note{background:var(--bg2);border:1px solid var(--hair);border-left:4px solid var(--red);border-radius:12px;padding:14px 16px;margin:14px 0;font-size:15px}
+  code{background:#f2f2f4;border-radius:6px;padding:2px 7px;font-family:ui-monospace,Menlo,monospace;font-size:15px}
+  .toc{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px;justify-content:center}
+  .toc a{background:#f2f2f4;color:var(--ink);border-radius:980px;padding:8px 16px;font-size:14px;font-weight:500}
+  footer{background:#f5f5f7;color:#86868b;padding:40px 0;font-size:13px;border-top:1px solid var(--hair);text-align:center;line-height:1.7}
+  footer a{color:var(--ink);text-decoration:underline}
+</style>
+</head>
+<body id="top">
+<nav><div class="wrap">
+  <a href="/"><img class="logo" src="assets/logo.png" alt="ZenityX Desk"></a>
+  <div class="links"><a href="/#features">ฟีเจอร์</a><a href="/#download">ดาวน์โหลด</a><a href="/help">ช่วยเหลือ</a></div>
+</div></nav>
+
+<header class="hd">
+  <img src="assets/m-13-headset.png" alt="">
+  <div class="eyebrow">ZENITYX DESK · ความช่วยเหลือ</div>
+  <h1>ใช้งานยังไง?</h1>
+  <div class="toc">
+    <a href="#connect">เริ่มเชื่อมต่อ</a><a href="#mac">สิทธิ์บน Mac</a><a href="#windows">Windows</a><a href="#faq">คำถามที่พบบ่อย</a>
+  </div>
+</header>
+
+<main><div class="wrap">
+
+  <section class="qa" id="connect">
+    <h2>เริ่มต้น: เชื่อมต่อ 1:1</h2>
+    <p>ZenityX Desk ให้ "ครู" เชื่อมเข้าไปคุมจอ "นักเรียน" ได้ — ทั้งสองฝ่ายเปิดแอปเดียวกัน</p>
+    <ol>
+      <li>นักเรียนเปิดแอป จะเห็น <b>ID</b> (เลข 9 หลัก) และ <b>รหัสผ่านครั้งเดียว</b> ที่แถบซ้าย</li>
+      <li>นักเรียนส่ง ID + รหัสให้ครู</li>
+      <li>ครูพิมพ์ ID นักเรียนในช่อง <b>Control Remote Desktop</b> → กด <b>Connect</b> → ใส่รหัสผ่าน</li>
+      <li>ครูจะเห็นและควบคุมหน้าจอนักเรียนได้ทันที</li>
+    </ol>
+    <div class="note">💡 สำหรับนักเรียนประจำ: ตั้ง <b>รหัสผ่านถาวร</b> ได้ที่ไอคอนดินสอข้างรหัสผ่าน จะได้ไม่ต้องส่งรหัสใหม่ทุกครั้ง</div>
+  </section>
+
+  <section class="qa" id="mac">
+    <h2>🍎 ให้สิทธิ์บน macOS</h2>
+    <p>ครั้งแรกที่ให้ครูคุมเครื่อง macOS ต้องอนุญาต 2 อย่าง (ทำครั้งเดียว):</p>
+    <h3>1. Screen Recording (เห็นหน้าจอ)</h3>
+    <ol>
+      <li>System Settings → <b>Privacy &amp; Security</b> → <b>Screen Recording</b></li>
+      <li>เปิดสวิตช์ให้ <b>ZenityX Desk</b></li>
+    </ol>
+    <h3>2. Accessibility (ควบคุมเมาส์/คีย์บอร์ด)</h3>
+    <ol>
+      <li>Privacy &amp; Security → <b>Accessibility</b> → เปิดให้ <b>ZenityX Desk</b></li>
+    </ol>
+    <div class="note">⚠️ <b>สำคัญ:</b> หลังเปิด Screen Recording ต้อง <b>ปิดแล้วเปิดแอปใหม่</b> ถึงจะมีผล (ถ้าไม่ทำ แอปจะเด้งขอสิทธิ์ซ้ำ)</div>
+    <p>เปิดแอปครั้งแรกเจอ "unidentified developer"? → <b>คลิกขวา</b> ที่แอป → <b>Open</b> → ยืนยัน (ครั้งแรกครั้งเดียว)</p>
+  </section>
+
+  <section class="qa" id="windows">
+    <h2>🪟 Windows</h2>
+    <ol>
+      <li>แตกไฟล์ <code>.zip</code> ลงโฟลเดอร์ แล้วเปิด <code>rustdesk.exe</code></li>
+      <li>ถ้า SmartScreen เตือน: คลิก <b>More info</b> → <b>Run anyway</b></li>
+      <li>แอปเชื่อมเซิร์ฟเวอร์ ZenityX อัตโนมัติ พร้อมใช้งาน</li>
+    </ol>
+    <div class="note">คำเตือนเกิดเพราะไฟล์ยังไม่ได้เซ็นใบรับรอง (กำลังดำเนินการ) — ดาวน์โหลดจาก <a href="/#download">desk.zenityx.com</a> เท่านั้นเพื่อความปลอดภัย</div>
+  </section>
+
+  <section class="qa" id="faq">
+    <h2>คำถามที่พบบ่อย</h2>
+    <h3>เชื่อมต่อไม่ติด / ค้างที่ "connecting"</h3>
+    <p>เช็กว่าทั้งสองเครื่องออนไลน์ (แถบล่างขึ้น "● Ready") และพิมพ์ ID ครบ 9 หลักถูกต้อง ลองปิด-เปิดแอปทั้งสองฝั่ง</p>
+    <h3>เด้งขอสิทธิ์ Screen Recording ซ้ำๆ</h3>
+    <p>หลังกดอนุญาตแล้วต้อง <b>quit แล้วเปิดแอปใหม่</b> — เป็นข้อกำหนดของ macOS</p>
+    <h3>ฟรีไหม / ใช้ได้กี่คน</h3>
+    <p>ฟรีสำหรับนักเรียนและทีม ZenityX วิ่งบนเซิร์ฟเวอร์ของเราเอง</p>
+    <h3>ต้องการความช่วยเหลือเพิ่ม</h3>
+    <p>ติดต่อทีม ZenityX ที่ <a href="https://zenityxai.com">zenityxai.com</a> หรือเพจ Facebook ZenityX</p>
+  </section>
+
+</div></main>
+
+<footer><div class="wrap">
+  ZenityX — สถาบัน AI Education · <a href="https://zenityxai.com">zenityxai.com</a> · <a href="/privacy">นโยบายความเป็นส่วนตัว</a><br>
+  © 2026 ZenityX (เซนนิตี้เอ็กซ์) · สร้างต่อยอดจาก <a href="https://rustdesk.com">RustDesk</a> (AGPL-3.0)
+</div></footer>
+</body>
+</html>
