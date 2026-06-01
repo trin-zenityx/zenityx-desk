@@ -65,3 +65,8 @@ flutter/web/
 /branding/icon-build/
 /branding/icon-build-white/
 *.dmg
+
+# website binaries (hosted on R2, not in git)
+/site/dl/
+ZenityX-Desk.dmg
+dist/
