@@ -390,41 +390,33 @@ class _DesktopHomePageState extends State<DesktopHomePage>
         children: [
           if (!isOutgoingOnly)
             Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Image.asset(
                   'assets/mascot_wave.png',
-                  height: 46,
+                  height: 38,
                   filterQuality: FilterQuality.medium,
-                ).marginOnly(top: 1),
-                const SizedBox(width: 10),
+                ),
+                const SizedBox(width: 8),
                 Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        translate("Your Desktop"),
-                        style: Theme.of(context).textTheme.titleLarge,
-                      ),
-                      const SizedBox(height: 5),
-                      Text(
-                        translate("desk_tip"),
-                        overflow: TextOverflow.clip,
-                        style: Theme.of(context).textTheme.bodySmall,
-                      ),
-                    ],
+                  child: Text(
+                    translate("Your Desktop"),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleLarge
+                        ?.copyWith(fontSize: 17, fontWeight: FontWeight.w700),
                   ),
                 ),
               ],
             ),
+          if (!isOutgoingOnly) const SizedBox(height: 8),
           if (!isOutgoingOnly)
-            Padding(
-              padding: const EdgeInsets.only(top: 13.0, right: 4.0),
-              child: Divider(
-                height: 1,
-                thickness: 1,
-                color: Theme.of(context).dividerColor.withOpacity(0.45),
-              ),
+            Text(
+              translate("desk_tip"),
+              overflow: TextOverflow.clip,
+              style: Theme.of(context).textTheme.bodySmall,
             ),
           if (isOutgoingOnly)
             Text(
