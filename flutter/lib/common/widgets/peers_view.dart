@@ -95,6 +95,13 @@ class _PeersViewState extends State<_PeersView>
     LoadEvent.lan: 'empty_lan_tip',
     LoadEvent.addressBook: 'empty_address_book_tip',
   });
+  // ZenityX: a distinct owl mascot per tab's empty state
+  final HashMap<String, String> _emptyMascots = HashMap.from({
+    LoadEvent.recent: 'mascot_sleep',
+    LoadEvent.favorite: 'mascot_heart',
+    LoadEvent.lan: 'mascot_search',
+    LoadEvent.addressBook: 'mascot_contacts',
+  });
   final space = (isDesktop || isWebDesktop) ? 12.0 : 8.0;
   final _curPeers = <String>{};
   var _lastChangeTime = DateTime.now();
@@ -192,7 +199,7 @@ class _PeersViewState extends State<_PeersView>
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(
-                  'assets/mascot_sleep.png',
+                  'assets/${_emptyMascots[widget.peers.loadEvent] ?? 'mascot_sleep'}.png',
                   height: 116,
                   filterQuality: FilterQuality.medium,
                 ).paddingOnly(bottom: 14),
