@@ -388,26 +388,43 @@ class _DesktopHomePageState extends State<DesktopHomePage>
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Column(
-            children: [
-              if (!isOutgoingOnly)
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    translate("Your Desktop"),
-                    style: Theme.of(context).textTheme.titleLarge,
+          if (!isOutgoingOnly)
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Image.asset(
+                  'assets/mascot_wave.png',
+                  height: 46,
+                  filterQuality: FilterQuality.medium,
+                ).marginOnly(top: 1),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        translate("Your Desktop"),
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                      const SizedBox(height: 5),
+                      Text(
+                        translate("desk_tip"),
+                        overflow: TextOverflow.clip,
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ),
+                    ],
                   ),
                 ),
-            ],
-          ),
-          SizedBox(
-            height: 10.0,
-          ),
+              ],
+            ),
           if (!isOutgoingOnly)
-            Text(
-              translate("desk_tip"),
-              overflow: TextOverflow.clip,
-              style: Theme.of(context).textTheme.bodySmall,
+            Padding(
+              padding: const EdgeInsets.only(top: 13.0, right: 4.0),
+              child: Divider(
+                height: 1,
+                thickness: 1,
+                color: Theme.of(context).dividerColor.withOpacity(0.45),
+              ),
             ),
           if (isOutgoingOnly)
             Text(
@@ -597,12 +614,13 @@ class _DesktopHomePageState extends State<DesktopHomePage>
               0, marginTop, 0, bind.isIncomingOnly() ? marginTop : 0),
           child: Container(
               decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(13),
                   gradient: LinearGradient(
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
                 colors: [
-                  Color.fromARGB(255, 226, 66, 188),
-                  Color.fromARGB(255, 244, 114, 124),
+                  Color(0xFFE8392E),
+                  Color(0xFFB3261E),
                 ],
               )),
               padding: EdgeInsets.all(20),

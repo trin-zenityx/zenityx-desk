@@ -112,6 +112,10 @@ pub fn translate(name: String) -> String {
 pub fn translate_locale(name: String, locale: &str) -> String {
     let locale = locale.to_lowercase();
     let mut lang = hbb_common::config::LocalConfig::get_option("lang").to_lowercase();
+    // ZenityX: Thai is the default UI language when the user hasn't picked one.
+    if lang.is_empty() || lang == "default" {
+        lang = "th".to_owned();
+    }
     if lang.is_empty() {
         // zh_CN on Linux, zh-Hans-CN on mac, zh_CN_#Hans on Android
         if locale.starts_with("zh") {

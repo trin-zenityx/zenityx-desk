@@ -178,7 +178,21 @@ class ConnectionManagerState extends State<ConnectionManager>
               buildTitleBar(),
               Expanded(
                 child: Center(
-                  child: Text(translate("Waiting")),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'assets/mascot_screen.png',
+                        height: 132,
+                        filterQuality: FilterQuality.medium,
+                      ).marginOnly(bottom: 16),
+                      Text(
+                        translate("zx_cm_waiting"),
+                        style: const TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.w600),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],

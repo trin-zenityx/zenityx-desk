@@ -62,6 +62,7 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
         ("Socks5 Proxy", "Socks5 proxy"),
         ("Socks5/Http(s) Proxy", "Socks5/Http(s) proxy"),
         ("install_daemon_tip", "For starting on boot, you need to install system service."),
+        ("zx_cm_waiting", "Waiting for your instructor to connect…"),
         ("Are you sure to close the connection?", "Are you sure you want to close the connection?"),
         ("One-Finger Tap", "One-finger tap"),
         ("Left Mouse", "Left mouse"),
