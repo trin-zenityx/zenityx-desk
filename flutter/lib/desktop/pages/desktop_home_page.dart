@@ -84,6 +84,7 @@ class _DesktopHomePageState extends State<DesktopHomePage>
       buildTip(context),
       if (!isOutgoingOnly) buildIDBoard(context),
       if (!isOutgoingOnly) buildPasswordBoard(context),
+      if (!isOutgoingOnly) buildShareCodeButton(context),
       FutureBuilder<Widget>(
         future: Future.value(
             Obx(() => buildHelpCards(stateGlobal.updateUrl.value))),
@@ -425,6 +426,35 @@ class _DesktopHomePageState extends State<DesktopHomePage>
               style: Theme.of(context).textTheme.bodySmall,
             ),
         ],
+      ),
+    );
+  }
+
+  // ZenityX: one-tap "share my code" — copies ID + password as one message so a
+  // non-technical student can paste it to the instructor (LINE/chat) in one go.
+  Widget buildShareCodeButton(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      margin: const EdgeInsets.only(left: 20, right: 16, top: 2, bottom: 8),
+      child: ElevatedButton.icon(
+        style: ElevatedButton.styleFrom(
+          padding: const EdgeInsets.symmetric(vertical: 11),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(9)),
+        ),
+        icon: const Icon(Icons.ios_share_rounded, size: 18),
+        label: Text(translate("zx_share_code"),
+            style: const TextStyle(fontWeight: FontWeight.w600)),
+        onPressed: () {
+          final m = gFFI.serverModel;
+          final id = m.serverId.text.trim();
+          final pw = m.serverPasswd.text.trim();
+          final msg = pw.isEmpty
+              ? 'ZenityX Desk\nID: $id'
+              : 'ZenityX Desk\nID: $id\n${translate("Password")}: $pw';
+          Clipboard.setData(ClipboardData(text: msg));
+          showToast(translate("zx_code_copied"));
+        },
       ),
     );
   }
