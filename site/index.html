@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ZenityX Desk — รีโมตหน้าจอเพื่อการเรียนการสอน</title>
-<meta name="description" content="ZenityX Desk — โปรแกรมรีโมตหน้าจอสำหรับการเรียน 1:1 ของ ZenityX ผู้สอนเห็นและช่วยบนหน้าจอนักเรียนได้ทันที ฟรีสำหรับนักเรียน">
-<meta property="og:title" content="ZenityX Desk — รีโมตหน้าจอเพื่อการเรียนการสอน">
-<meta property="og:description" content="ผู้สอนเชื่อมต่อเข้ามาช่วยสอนบนหน้าจอของคุณได้ทันที ปลอดภัยบนเซิร์ฟเวอร์ของ ZenityX เอง">
+<title>ZenityX Desk — ให้ผู้สอนช่วยคุณถึงหน้าจอ</title>
+<meta name="description" content="ZenityX Desk — แอปรีโมตหน้าจอสำหรับการเรียนแบบ 1:1 ผู้สอนเห็นและช่วยบนหน้าจอของคุณได้ทันที">
+<meta property="og:title" content="ZenityX Desk — ให้ผู้สอนช่วยคุณถึงหน้าจอ">
+<meta property="og:description" content="แอปรีโมตหน้าจอสำหรับการเรียนแบบ 1:1 — ฟรีสำหรับนักเรียน">
 <meta property="og:image" content="https://desk.zenityx.com/assets/shots/app-home.png">
 <link rel="icon" href="assets/app-icon.png">
 <link rel="preload" as="image" href="assets/shots/app-home.webp">
@@ -30,55 +30,55 @@
   nav{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.72);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid transparent;transition:border-color .3s}
   nav.scrolled{border-color:var(--hair)}
   nav .wrap{display:flex;align-items:center;justify-content:space-between;height:58px}
-  nav .logo{height:24px;display:block}
+  .brand{display:flex;align-items:center;gap:10px;color:var(--ink)}
+  .brand img{height:30px;width:30px;border-radius:7px;display:block}
+  .brand b{font-size:16.5px;font-weight:700;letter-spacing:-.01em}
   nav .links{display:flex;gap:28px;align-items:center;font-size:15px;font-weight:500}
   nav .links a{color:var(--sub);transition:color .2s}
   nav .links a:hover{color:var(--ink)}
   .btn-nav{background:var(--red);color:#fff !important;padding:7px 16px;border-radius:980px;font-weight:600;transition:transform .2s var(--ease),box-shadow .2s}
-  .btn-nav:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(232,57,46,.35)}
+  .btn-nav:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(232,57,46,.3)}
   @media(max-width:720px){nav .links a:not(.btn-nav){display:none}}
 
   /* ---------- hero ---------- */
   .hero{position:relative;text-align:center;padding:84px 0 0;overflow:hidden}
-  .blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.16;pointer-events:none;z-index:0}
-  .blob.b1{width:560px;height:560px;background:var(--red);top:-180px;left:-140px;animation:drift1 16s ease-in-out infinite alternate}
-  .blob.b2{width:480px;height:480px;background:#ff8a5c;top:120px;right:-160px;animation:drift2 20s ease-in-out infinite alternate}
-  @keyframes drift1{from{transform:translate(0,0) scale(1)}to{transform:translate(70px,50px) scale(1.12)}}
-  @keyframes drift2{from{transform:translate(0,0) scale(1.05)}to{transform:translate(-60px,40px) scale(.95)}}
+  .blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.11;pointer-events:none;z-index:0}
+  .blob.b1{width:560px;height:560px;background:var(--red);top:-180px;left:-140px;animation:drift1 22s ease-in-out infinite alternate}
+  .blob.b2{width:480px;height:480px;background:#ff8a5c;top:120px;right:-160px;animation:drift2 26s ease-in-out infinite alternate}
+  @keyframes drift1{from{transform:translate(0,0)}to{transform:translate(50px,36px)}}
+  @keyframes drift2{from{transform:translate(0,0)}to{transform:translate(-44px,30px)}}
   .hero .wrap{position:relative;z-index:1}
-  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--red);background:rgba(232,57,46,.08);border:1px solid rgba(232,57,46,.18);padding:6px 16px;border-radius:980px}
-  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:#2fbf8f;animation:pulse 2.2s ease-in-out infinite}
-  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(.8)}}
-  .hero h1{font-size:clamp(38px,6.4vw,64px);margin:22px 0 16px}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--red);background:rgba(232,57,46,.07);border:1px solid rgba(232,57,46,.16);padding:6px 16px;border-radius:980px}
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:#2fbf8f;animation:pulse 2.6s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
+  .hero h1{font-size:clamp(38px,6.4vw,64px);margin:22px 0 14px}
   .hero h1 .accent{color:var(--red)}
-  .hero p.lead{font-size:clamp(17px,2.4vw,21px);color:var(--sub);max-width:640px;margin:0 auto 30px}
+  .hero p.lead{font-size:clamp(17px,2.4vw,21px);color:var(--sub);max-width:560px;margin:0 auto 30px}
   .cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
   .btn{display:inline-flex;align-items:center;gap:10px;border-radius:14px;padding:14px 26px;font-size:16.5px;font-weight:600;transition:transform .25s var(--ease),box-shadow .25s}
   .btn svg{flex:0 0 auto}
   .btn-primary{background:var(--red);color:#fff}
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(232,57,46,.38)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(232,57,46,.32)}
   .btn-secondary{background:var(--ink);color:#fff}
-  .btn-secondary:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(0,0,0,.28)}
+  .btn-secondary:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(0,0,0,.24)}
   .btn small{display:block;font-size:11.5px;font-weight:400;opacity:.8;text-align:left;line-height:1.2}
   .trust-note{font-size:13.5px;color:var(--sub)}
-  .trust-note b{color:#2e9e6b;font-weight:600}
 
   /* hero screenshot */
   .stage{position:relative;margin:36px auto -16px;max-width:940px;perspective:1200px}
-  .shot-wrap{position:relative;transition:transform .25s ease-out;will-change:transform}
+  .shot-wrap{position:relative;transition:transform .3s ease-out;will-change:transform}
   .shot-wrap img.shot{display:block;width:100%}
-  .shot-wrap img.shot.alt{position:absolute;inset:0;opacity:0;transition:opacity .9s ease}
+  .shot-wrap img.shot.alt{position:absolute;inset:0;opacity:0;transition:opacity 1.1s ease}
   .shot-wrap.swap img.shot.alt{opacity:1}
-  .owl-peek{position:absolute;width:clamp(80px,12vw,128px);right:-2%;bottom:6%;z-index:2;animation:bob 5s ease-in-out infinite;filter:drop-shadow(0 10px 18px rgba(0,0,0,.18))}
-  .owl-peek2{position:absolute;width:clamp(64px,9vw,96px);left:-1%;top:14%;z-index:2;animation:bob 6.5s ease-in-out 1s infinite;filter:drop-shadow(0 10px 18px rgba(0,0,0,.15))}
-  @keyframes bob{0%,100%{transform:translateY(0) rotate(-1.2deg)}50%{transform:translateY(-12px) rotate(1.8deg)}}
+  .owl-peek{position:absolute;width:clamp(76px,11vw,116px);right:0;bottom:7%;z-index:2;animation:bob 8s ease-in-out infinite;filter:drop-shadow(0 8px 14px rgba(0,0,0,.14))}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
   .hero-fade{height:120px;background:linear-gradient(to bottom,rgba(245,245,247,0),var(--bg2));margin-top:-90px;position:relative;z-index:0}
 
   /* ---------- trust strip ---------- */
   .strip{background:var(--bg2);padding:34px 0 56px}
   .strip .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
   .chip{background:#fff;border:1px solid var(--hair);border-radius:18px;padding:20px 22px;display:flex;gap:14px;align-items:flex-start}
-  .chip .ic{width:40px;height:40px;border-radius:12px;background:rgba(232,57,46,.09);display:flex;align-items:center;justify-content:center;color:var(--red);flex:0 0 auto}
+  .chip .ic{width:40px;height:40px;border-radius:12px;background:rgba(232,57,46,.08);display:flex;align-items:center;justify-content:center;color:var(--red);flex:0 0 auto}
   .chip b{display:block;font-size:15.5px;margin-bottom:3px}
   .chip span{font-size:13.5px;color:var(--sub);line-height:1.5}
 
@@ -103,23 +103,20 @@
   .grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px}
   .fcard{background:#fff;border:1px solid var(--hair);border-radius:22px;padding:30px 26px;text-align:center;transition:transform .35s var(--ease),box-shadow .35s}
   .fcard:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,.09)}
-  .fcard img{height:104px;width:auto;margin-bottom:16px;animation:bob 6s ease-in-out infinite}
-  .fcard:nth-child(2) img{animation-delay:.8s}
-  .fcard:nth-child(3) img{animation-delay:1.6s}
-  .fcard:nth-child(4) img{animation-delay:2.4s}
+  .fcard img{height:104px;width:auto;margin-bottom:16px}
   .fcard b{display:block;font-size:17px;margin-bottom:7px}
   .fcard span{font-size:14px;color:var(--sub);line-height:1.55}
 
   /* steps */
   .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px}
-  .step{background:#fff;border:1px solid var(--hair);border-radius:20px;padding:26px 24px;position:relative}
+  .step{background:#fff;border:1px solid var(--hair);border-radius:20px;padding:26px 24px}
   .step .num{font-size:13px;font-weight:700;color:var(--red);letter-spacing:.1em;margin-bottom:10px}
   .step b{display:block;font-size:16.5px;margin-bottom:7px}
   .step span{font-size:14px;color:var(--sub);line-height:1.55}
 
   /* ---------- download ---------- */
   .dl{padding:96px 0 90px;text-align:center;position:relative;overflow:hidden}
-  .dl .owl-dl{height:120px;margin-bottom:18px;animation:bob 5.5s ease-in-out infinite}
+  .dl .owl-dl{height:116px;margin-bottom:18px}
   .dl h2{font-size:clamp(30px,4.6vw,44px);margin-bottom:10px}
   .dl p.sub2{color:var(--sub);margin-bottom:34px}
   .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;max-width:760px;margin:0 auto;text-align:left}
@@ -133,23 +130,19 @@
   .dl .help-link{display:inline-block;margin-top:26px;font-size:15px;font-weight:500}
 
   /* ---------- footer ---------- */
-  footer{background:var(--bg2);color:#86868b;padding:42px 0;font-size:13px;border-top:1px solid var(--hair);text-align:center;line-height:1.8}
+  footer{background:var(--bg2);color:#86868b;padding:46px 0;font-size:13px;border-top:1px solid var(--hair);text-align:center;line-height:1.9}
+  footer img.zx{height:20px;display:block;margin:0 auto 10px;opacity:.85}
   footer a{color:var(--ink);text-decoration:underline}
 
-  /* ---------- motion: reveal ---------- */
-  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
-  .reveal.in{opacity:1;transform:none}
-  .reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}.reveal.d4{transition-delay:.32s}
   @media(prefers-reduced-motion:reduce){
     *,*::before,*::after{animation:none !important;transition:none !important}
-    .reveal{opacity:1;transform:none}
   }
 </style>
 </head>
 <body>
 
 <nav id="nav"><div class="wrap">
-  <a href="/"><img class="logo" src="assets/logo.png" alt="ZenityX Desk"></a>
+  <a class="brand" href="/"><img src="assets/app-icon.png" alt=""><b>ZenityX Desk</b></a>
   <div class="links">
     <a href="#features">ฟีเจอร์</a>
     <a href="#how">วิธีใช้</a>
@@ -161,33 +154,32 @@
 <header class="hero">
   <div class="blob b1"></div><div class="blob b2"></div>
   <div class="wrap">
-    <span class="eyebrow reveal"><span class="dot"></span>เครื่องมือการเรียน 1:1 ของ ZenityX</span>
-    <h1 class="reveal d1">ให้ผู้สอนช่วยคุณ<br><span class="accent">ถึงหน้าจอ</span></h1>
-    <p class="lead reveal d2">ZenityX Desk เชื่อมผู้สอนเข้ามาเห็นและช่วยบนหน้าจอของคุณได้ทันที ติดขัดตรงไหน ไม่ต้องอธิบายยาว — ให้ผู้สอนทำให้ดูตรงนั้นเลย</p>
-    <div class="cta-row reveal d3">
+    <span class="eyebrow"><span class="dot"></span>เครื่องมือการเรียนแบบ 1:1</span>
+    <h1>ให้ผู้สอนช่วยคุณ<br><span class="accent">ถึงหน้าจอ</span></h1>
+    <p class="lead">ติดตรงไหน ให้ผู้สอนเห็นและช่วยตรงนั้น</p>
+    <div class="cta-row">
       <a class="btn btn-primary" href="https://pub-2b7122b3489f4bf68928df877ee48d89.r2.dev/ZenityX-Desk.dmg">
         <svg viewBox="0 0 384 512" width="20" height="20" fill="currentColor"><path d="M318.7 268c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.6zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-        <span>ดาวน์โหลดสำหรับ Mac<small>Apple notarized · เปิดได้ทันที</small></span>
+        <span>ดาวน์โหลดสำหรับ Mac<small>เปิดได้ทันที</small></span>
       </a>
       <a class="btn btn-secondary" href="https://pub-2b7122b3489f4bf68928df877ee48d89.r2.dev/ZenityX-Desk-Windows-x64.zip">
         <svg viewBox="0 0 448 512" width="19" height="19" fill="currentColor"><path d="M0 93.7l183.6-25.3v177.4H0V93.7zm0 324.6l183.6 25.3V268.4H0v149.9zm203.8 28L448 480V268.4H203.8v177.9zm0-380.6v180.1H448V32L203.8 65.7z"/></svg>
-        <span>ดาวน์โหลดสำหรับ Windows<small>แบบพกพา · ไม่ต้องติดตั้ง</small></span>
+        <span>ดาวน์โหลดสำหรับ Windows<small>ไม่ต้องติดตั้ง</small></span>
       </a>
     </div>
-    <div class="trust-note reveal d4">ฟรีสำหรับนักเรียน ZenityX · <b>เวอร์ชัน Mac ผ่านการรับรองจาก Apple แล้ว</b></div>
+    <div class="trust-note">ฟรีสำหรับนักเรียน · เวอร์ชัน Mac ผ่านการรับรองจาก Apple</div>
 
-    <div class="stage reveal d4">
+    <div class="stage">
       <div class="shot-wrap" id="shotWrap">
         <picture>
           <source srcset="assets/shots/app-home.webp" type="image/webp">
-          <img class="shot" src="assets/shots/app-home.png" alt="หน้าจอจริงของ ZenityX Desk" width="2224" height="1544">
+          <img class="shot" src="assets/shots/app-home.png" alt="หน้าจอ ZenityX Desk" width="2224" height="1544">
         </picture>
         <picture>
           <source srcset="assets/shots/app-fav.webp" type="image/webp">
-          <img class="shot alt" src="assets/shots/app-fav.png" alt="แท็บรายการโปรดของ ZenityX Desk" width="2224" height="1544" loading="lazy">
+          <img class="shot alt" src="assets/shots/app-fav.png" alt="" width="2224" height="1544" loading="lazy">
         </picture>
         <img class="owl-peek" src="assets/m-01-wave.png" alt="">
-        <img class="owl-peek2" src="assets/m-12-think.png" alt="">
       </div>
     </div>
   </div>
@@ -196,42 +188,42 @@
 
 <div class="strip">
   <div class="wrap">
-    <div class="chip reveal">
+    <div class="chip">
       <div class="ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-      <div><b>เซิร์ฟเวอร์ของ ZenityX เอง</b><span>ข้อมูลวิ่งผ่านเซิร์ฟเวอร์ที่เราดูแลเอง เข้ารหัสตลอดทาง ไม่ผ่านบริการสาธารณะ</span></div>
+      <div><b>เซิร์ฟเวอร์ของเราเอง</b><span>การเชื่อมต่อเข้ารหัส บนเซิร์ฟเวอร์ที่ ZenityX ดูแล</span></div>
     </div>
-    <div class="chip reveal d1">
-      <div class="ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></div>
-      <div><b>เริ่มได้ในไม่กี่วินาที</b><span>เปิดแอป กดปุ่มส่งรหัสให้ผู้สอน แค่นั้น — ระบบเชื่อมต่อเซิร์ฟเวอร์ให้อัตโนมัติ</span></div>
+    <div class="chip">
+      <div class="ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg></div>
+      <div><b>พร้อมในไม่กี่วินาที</b><span>เปิดแอป ส่งรหัส แล้วเริ่มเรียนได้เลย</span></div>
     </div>
-    <div class="chip reveal d2">
+    <div class="chip">
       <div class="ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
-      <div><b>ฟรีสำหรับนักเรียน</b><span>นักเรียนและทีม ZenityX ใช้งานได้ฟรี ไม่มีโฆษณา ไม่มีการเก็บค่าบริการ</span></div>
+      <div><b>ฟรีสำหรับนักเรียน</b><span>ไม่มีโฆษณา ไม่มีค่าใช้จ่าย</span></div>
     </div>
   </div>
 </div>
 
 <section class="feature" id="features">
   <div class="wrap">
-    <div class="sec-head reveal">
+    <div class="sec-head">
       <div class="tag">ออกแบบเพื่อการเรียน</div>
       <h2>หน้าจอเดียว เข้าใจตรงกัน</h2>
-      <p>ทุกอย่างในแอปคิดมาเพื่อนักเรียน — ภาษาไทยทั้งแอป ปุ่มเดียวส่งรหัส และน้องฮูกคอยบอกสถานะ</p>
+      <p>แอปภาษาไทยที่นักเรียนใช้เองได้ตั้งแต่ครั้งแรก</p>
     </div>
     <div class="duo">
-      <div class="shot-card reveal">
+      <div class="shot-card">
         <picture>
           <source srcset="assets/shots/app-home.webp" type="image/webp">
-          <img src="assets/shots/app-home.png" alt="หน้าหลัก ZenityX Desk ภาษาไทย" loading="lazy">
+          <img src="assets/shots/app-home.png" alt="หน้าหลัก ZenityX Desk" loading="lazy">
         </picture>
       </div>
-      <div class="reveal d1">
+      <div>
         <h3>ส่งรหัสให้ผู้สอน ในปุ่มเดียว</h3>
-        <p>ไม่ต้องไล่คัดลอกทีละช่อง — กดปุ่มเดียว แอปรวม ID และรหัสผ่านเป็นข้อความพร้อมส่ง วางต่อใน LINE หรือแชตไหนก็ได้</p>
+        <p>ID และรหัสผ่านรวมเป็นข้อความเดียว พร้อมวางส่งใน LINE</p>
         <ul class="ticks">
-          <li><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>ภาษาไทยทั้งแอป ตั้งแต่เปิดครั้งแรก</li>
-          <li><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>รหัสผ่านแบบใช้ครั้งเดียว เปลี่ยนใหม่ทุกการเชื่อมต่อ</li>
-          <li><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>เห็นชัดเสมอว่ากำลังมีใครเชื่อมต่ออยู่ และตัดการเชื่อมต่อได้ทุกเมื่อ</li>
+          <li><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>ภาษาไทยทั้งแอป</li>
+          <li><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>รหัสผ่านใช้ครั้งเดียว ปลอดภัยทุกคาบ</li>
+          <li><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>ตัดการเชื่อมต่อได้ทุกเมื่อ</li>
         </ul>
       </div>
     </div>
@@ -240,32 +232,30 @@
 
 <section class="feature gray">
   <div class="wrap">
-    <div class="sec-head reveal">
+    <div class="sec-head">
       <div class="tag">ครบสำหรับคาบเรียน</div>
       <h2>มากกว่าการเห็นหน้าจอ</h2>
-      <p>เครื่องมือที่ใช้จริงในคาบเรียน 1:1 — อยู่ในแอปเดียว ไม่ต้องสลับโปรแกรม</p>
     </div>
     <div class="grid4">
-      <div class="fcard reveal"><img src="assets/m-07-screen.png" alt="" loading="lazy"><b>เห็นและช่วยบนจอจริง</b><span>ผู้สอนดูหน้าจอ ขยับเมาส์ และพิมพ์ช่วยได้เหมือนนั่งข้างกัน</span></div>
-      <div class="fcard reveal d1"><img src="assets/m-13-headset.png" alt="" loading="lazy"><b>คุยเสียงและแชตในตัว</b><span>โทรคุยเสียงหรือพิมพ์แชตระหว่างเรียนได้ ไม่ต้องเปิดโปรแกรมเพิ่ม</span></div>
-      <div class="fcard reveal d2"><img src="assets/m-10-lock.png" alt="" loading="lazy"><b>คุณคุมสิทธิ์เองทั้งหมด</b><span>ทุกการเชื่อมต่อต้องมีรหัสจากคุณ และหยุดได้ทันทีที่ต้องการ</span></div>
-      <div class="fcard reveal d3"><img src="assets/m-14-teach.png" alt="" loading="lazy"><b>สร้างมาเพื่อการสอน</b><span>พัฒนาโดยทีม ZenityX เพื่อคลาสเรียน 1:1 โดยเฉพาะ ไม่ใช่เครื่องมือไอทีทั่วไป</span></div>
+      <div class="fcard"><img src="assets/m-07-screen.png" alt="" loading="lazy"><b>เห็นและช่วยบนจอจริง</b><span>เหมือนนั่งข้างกัน</span></div>
+      <div class="fcard"><img src="assets/m-13-headset.png" alt="" loading="lazy"><b>เสียงและแชตในตัว</b><span>คุยกันได้โดยไม่ต้องเปิดแอปอื่น</span></div>
+      <div class="fcard"><img src="assets/m-10-lock.png" alt="" loading="lazy"><b>คุณคุมสิทธิ์เอง</b><span>ทุกการเชื่อมต่อต้องได้รหัสจากคุณ</span></div>
+      <div class="fcard"><img src="assets/m-14-teach.png" alt="" loading="lazy"><b>เพื่อการสอนโดยเฉพาะ</b><span>พัฒนาเพื่อคลาส 1:1 ของ ZenityX</span></div>
     </div>
   </div>
 </section>
 
 <section class="feature" id="how">
   <div class="wrap">
-    <div class="sec-head reveal">
+    <div class="sec-head">
       <div class="tag">เริ่มใช้งาน</div>
       <h2>พร้อมเรียนใน 4 ขั้น</h2>
-      <p>ติดตั้งครั้งเดียว ใช้ได้ทุกคาบเรียน</p>
     </div>
     <div class="steps">
-      <div class="step reveal"><div class="num">ขั้นที่ 01</div><b>ดาวน์โหลดและเปิดแอป</b><span>เลือกเวอร์ชัน Mac หรือ Windows ด้านล่าง — เวอร์ชัน Mac เปิดได้ทันที ไม่มีคำเตือน</span></div>
-      <div class="step reveal d1"><div class="num">ขั้นที่ 02</div><b>อนุญาตสิทธิ์ครั้งแรก</b><span>ทำตามการ์ดสีแดงในแอปเพื่อเปิดสิทธิ์หน้าจอ ทำครั้งเดียวจบ <a href="/help#mac">ดูวิธี</a></span></div>
-      <div class="step reveal d2"><div class="num">ขั้นที่ 03</div><b>กดส่งรหัสให้ผู้สอน</b><span>ปุ่มเดียวคัดลอก ID และรหัสผ่านพร้อมส่ง — วางใน LINE ส่งให้ผู้สอนได้เลย</span></div>
-      <div class="step reveal d3"><div class="num">ขั้นที่ 04</div><b>เริ่มเรียนได้เลย</b><span>ผู้สอนเชื่อมต่อเข้ามา เห็นหน้าจอคุณ และช่วยสอนได้ทันที</span></div>
+      <div class="step"><div class="num">01</div><b>ดาวน์โหลดและเปิดแอป</b><span>เวอร์ชัน Mac เปิดได้ทันที</span></div>
+      <div class="step"><div class="num">02</div><b>อนุญาตสิทธิ์ครั้งแรก</b><span>ทำตามการ์ดในแอป ครั้งเดียวจบ <a href="/help#mac">ดูวิธี</a></span></div>
+      <div class="step"><div class="num">03</div><b>ส่งรหัสให้ผู้สอน</b><span>ปุ่มเดียว พร้อมส่ง</span></div>
+      <div class="step"><div class="num">04</div><b>เริ่มเรียน</b><span>ผู้สอนเชื่อมต่อและช่วยได้ทันที</span></div>
     </div>
   </div>
 </section>
@@ -273,24 +263,24 @@
 <section class="dl" id="download">
   <div class="blob b1" style="top:auto;bottom:-220px;left:-160px"></div>
   <div class="wrap">
-    <img class="owl-dl reveal" src="assets/m-03-thumbsup.png" alt="">
-    <h2 class="reveal d1">ดาวน์โหลด ZenityX Desk</h2>
-    <p class="sub2 reveal d2">เวอร์ชัน 1.4.6 · ฟรีสำหรับนักเรียนและทีม ZenityX</p>
+    <img class="owl-dl" src="assets/m-03-thumbsup.png" alt="">
+    <h2>ดาวน์โหลด ZenityX Desk</h2>
+    <p class="sub2">เวอร์ชัน 1.4.6 · ฟรีสำหรับนักเรียน</p>
     <div class="cards">
-      <div class="dcard reveal d2">
+      <div class="dcard">
         <div class="os">
           <svg viewBox="0 0 384 512" width="26" height="26" fill="currentColor"><path d="M318.7 268c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.6zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
           <b>macOS</b>
         </div>
-        <div class="meta">รองรับ macOS 12.3 ขึ้นไป (Apple Silicon)<br><span class="ok">ผ่านการรับรอง (notarized) จาก Apple — เปิดได้ทันที ไม่มีคำเตือน</span></div>
+        <div class="meta">macOS 12.3 ขึ้นไป (Apple Silicon)<br><span class="ok">ผ่านการรับรองจาก Apple — เปิดได้ทันที</span></div>
         <a class="btn btn-primary" href="https://pub-2b7122b3489f4bf68928df877ee48d89.r2.dev/ZenityX-Desk.dmg">ดาวน์โหลด .dmg</a>
       </div>
-      <div class="dcard reveal d3">
+      <div class="dcard">
         <div class="os">
           <svg viewBox="0 0 448 512" width="24" height="24" fill="currentColor"><path d="M0 93.7l183.6-25.3v177.4H0V93.7zm0 324.6l183.6 25.3V268.4H0v149.9zm203.8 28L448 480V268.4H203.8v177.9zm0-380.6v180.1H448V32L203.8 65.7z"/></svg>
           <b>Windows</b>
         </div>
-        <div class="meta">รองรับ Windows 10/11 (64-bit) แบบพกพา ไม่ต้องติดตั้ง<br>หาก SmartScreen แจ้งเตือน: กด More info แล้ว Run anyway <a href="/help#windows">ดูวิธี</a></div>
+        <div class="meta">Windows 10/11 (64-bit) ไม่ต้องติดตั้ง<br>หาก SmartScreen แจ้งเตือน <a href="/help#windows">ดูวิธีเปิด</a></div>
         <a class="btn btn-secondary" href="https://pub-2b7122b3489f4bf68928df877ee48d89.r2.dev/ZenityX-Desk-Windows-x64.zip">ดาวน์โหลด .zip</a>
       </div>
     </div>
@@ -299,8 +289,9 @@
 </section>
 
 <footer><div class="wrap">
-  ZenityX — สถาบัน AI Education · <a href="https://zenityxai.com">zenityxai.com</a> · <a href="/help">ช่วยเหลือ</a> · <a href="/privacy">นโยบายความเป็นส่วนตัว</a><br>
-  © 2026 ZenityX (เซนนิตี้เอ็กซ์) · สร้างต่อยอดจาก <a href="https://rustdesk.com">RustDesk</a> (AGPL-3.0)
+  <img class="zx" src="assets/logo.png" alt="ZenityX">
+  ZenityX Desk เป็นแอปของ ZenityX — สถาบัน AI Education · <a href="https://zenityxai.com">zenityxai.com</a><br>
+  <a href="/help">ช่วยเหลือ</a> · <a href="/privacy">นโยบายความเป็นส่วนตัว</a> · © 2026 ZenityX · สร้างต่อยอดจาก <a href="https://rustdesk.com">RustDesk</a> (AGPL-3.0)
 </div></footer>
 
 <script>
@@ -311,25 +302,19 @@
   var nav = document.getElementById('nav');
   addEventListener('scroll', function(){ nav.classList.toggle('scrolled', scrollY > 8); }, {passive:true});
 
-  // reveal on scroll
-  var io = new IntersectionObserver(function(es){
-    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
-  }, {threshold:.14});
-  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
-
   if (reduced) return;
 
-  // hero screenshot: gentle tilt following pointer + auto crossfade between tabs
+  // hero screenshot: subtle tilt + slow crossfade between the two real tabs
   var wrap = document.getElementById('shotWrap');
   if (wrap){
     var stage = wrap.parentElement;
     stage.addEventListener('pointermove', function(ev){
       var r = stage.getBoundingClientRect();
       var x = (ev.clientX - r.left)/r.width - .5, y = (ev.clientY - r.top)/r.height - .5;
-      wrap.style.transform = 'rotateY(' + (x*4) + 'deg) rotateX(' + (-y*3) + 'deg)';
+      wrap.style.transform = 'rotateY(' + (x*2.4) + 'deg) rotateX(' + (-y*1.8) + 'deg)';
     });
     stage.addEventListener('pointerleave', function(){ wrap.style.transform = ''; });
-    setInterval(function(){ wrap.classList.toggle('swap'); }, 5200);
+    setInterval(function(){ wrap.classList.toggle('swap'); }, 6500);
   }
 })();
 </script>
