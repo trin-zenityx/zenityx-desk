@@ -3,192 +3,335 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ZenityX Desk — ควบคุมหน้าจอเพื่อการสอน 1:1</title>
-<meta name="description" content="ZenityX Desk — โปรแกรมควบคุมหน้าจอระยะไกลของ ZenityX สำหรับการสอนออนไลน์ 1:1 ปลอดภัยบนเซิร์ฟเวอร์ของเราเอง">
+<title>ZenityX Desk — รีโมตหน้าจอเพื่อการเรียนการสอน</title>
+<meta name="description" content="ZenityX Desk — โปรแกรมรีโมตหน้าจอสำหรับการเรียน 1:1 ของ ZenityX ผู้สอนเห็นและช่วยบนหน้าจอนักเรียนได้ทันที ฟรีสำหรับนักเรียน">
+<meta property="og:title" content="ZenityX Desk — รีโมตหน้าจอเพื่อการเรียนการสอน">
+<meta property="og:description" content="ผู้สอนเชื่อมต่อเข้ามาช่วยสอนบนหน้าจอของคุณได้ทันที ปลอดภัยบนเซิร์ฟเวอร์ของ ZenityX เอง">
+<meta property="og:image" content="https://desk.zenityx.com/assets/shots/app-home.png">
 <link rel="icon" href="assets/app-icon.png">
-<meta property="og:title" content="ZenityX Desk">
-<meta property="og:description" content="ควบคุมหน้าจอเพื่อการสอน 1:1 — โดย ZenityX">
-<meta property="og:image" content="assets/hero-app.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/shots/app-home.webp">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --red:#FF2222; --red-deep:#CC0000;
-    --ink:#1d1d1f; --sub:#6e6e73; --hair:#e8e8ed; --bg:#fff; --bg2:#fafafa;
-    --sf:-apple-system,BlinkMacSystemFont,"IBM Plex Sans Thai","Segoe UI",sans-serif;
-    --th:"IBM Plex Sans Thai",-apple-system,"Sarabun",sans-serif;
+    --red:#E8392E; --red-deep:#B3261E; --ink:#1d1d1f; --sub:#6e6e73;
+    --hair:#e8e8ed; --bg2:#f5f5f7;
+    --ff:"IBM Plex Sans Thai",-apple-system,BlinkMacSystemFont,sans-serif;
+    --ease:cubic-bezier(.22,.8,.26,.99);
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-  body{font-family:var(--th);color:var(--ink);background:var(--bg);line-height:1.5;font-size:17px}
-  .wrap{max-width:1040px;margin:0 auto;padding:0 28px}
-  h1,h2,h3{font-family:var(--th);font-weight:700;letter-spacing:-.02em;line-height:1.08}
-  a{color:inherit;text-decoration:none}
-  .accent{color:var(--red)}
-  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--th);font-weight:600;font-size:17px;
-    padding:14px 28px;border-radius:980px;border:0;cursor:pointer;transition:transform .15s ease,opacity .15s,background .15s;white-space:nowrap}
-  .btn:hover{transform:scale(1.03)}
+  html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+  body{font-family:var(--ff);color:var(--ink);background:#fff;line-height:1.55;font-size:17px;overflow-x:hidden}
+  a{color:var(--red);text-decoration:none}
+  img{max-width:100%;height:auto}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+  h1,h2,h3{font-weight:700;letter-spacing:-.02em;line-height:1.12}
+
+  /* ---------- nav ---------- */
+  nav{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.72);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid transparent;transition:border-color .3s}
+  nav.scrolled{border-color:var(--hair)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:58px}
+  nav .logo{height:24px;display:block}
+  nav .links{display:flex;gap:28px;align-items:center;font-size:15px;font-weight:500}
+  nav .links a{color:var(--sub);transition:color .2s}
+  nav .links a:hover{color:var(--ink)}
+  .btn-nav{background:var(--red);color:#fff !important;padding:7px 16px;border-radius:980px;font-weight:600;transition:transform .2s var(--ease),box-shadow .2s}
+  .btn-nav:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(232,57,46,.35)}
+  @media(max-width:720px){nav .links a:not(.btn-nav){display:none}}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;text-align:center;padding:84px 0 0;overflow:hidden}
+  .blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.16;pointer-events:none;z-index:0}
+  .blob.b1{width:560px;height:560px;background:var(--red);top:-180px;left:-140px;animation:drift1 16s ease-in-out infinite alternate}
+  .blob.b2{width:480px;height:480px;background:#ff8a5c;top:120px;right:-160px;animation:drift2 20s ease-in-out infinite alternate}
+  @keyframes drift1{from{transform:translate(0,0) scale(1)}to{transform:translate(70px,50px) scale(1.12)}}
+  @keyframes drift2{from{transform:translate(0,0) scale(1.05)}to{transform:translate(-60px,40px) scale(.95)}}
+  .hero .wrap{position:relative;z-index:1}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--red);background:rgba(232,57,46,.08);border:1px solid rgba(232,57,46,.18);padding:6px 16px;border-radius:980px}
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:#2fbf8f;animation:pulse 2.2s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(.8)}}
+  .hero h1{font-size:clamp(38px,6.4vw,64px);margin:22px 0 16px}
+  .hero h1 .accent{color:var(--red)}
+  .hero p.lead{font-size:clamp(17px,2.4vw,21px);color:var(--sub);max-width:640px;margin:0 auto 30px}
+  .cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
+  .btn{display:inline-flex;align-items:center;gap:10px;border-radius:14px;padding:14px 26px;font-size:16.5px;font-weight:600;transition:transform .25s var(--ease),box-shadow .25s}
+  .btn svg{flex:0 0 auto}
   .btn-primary{background:var(--red);color:#fff}
-  .btn-dark{background:var(--ink);color:#fff}
-  .btn-ghost{background:transparent;color:var(--ink);border:1px solid #c7c7cc}
-  .btn-lg{font-size:19px;padding:17px 38px}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(232,57,46,.38)}
+  .btn-secondary{background:var(--ink);color:#fff}
+  .btn-secondary:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(0,0,0,.28)}
+  .btn small{display:block;font-size:11.5px;font-weight:400;opacity:.8;text-align:left;line-height:1.2}
+  .trust-note{font-size:13.5px;color:var(--sub)}
+  .trust-note b{color:#2e9e6b;font-weight:600}
 
-  /* nav */
-  nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.8);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--hair)}
-  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:56px}
-  nav .logo{height:24px}
-  nav .links{display:flex;gap:30px;font-size:15px;font-weight:500}
-  nav .links a{color:var(--sub)} nav .links a:hover{color:var(--ink)}
-  nav .nbtn{background:var(--red);color:#fff;padding:8px 18px;border-radius:980px;font-size:15px;font-weight:600}
-  @media(max-width:720px){nav .links{display:none}}
+  /* hero screenshot */
+  .stage{position:relative;margin:36px auto -16px;max-width:940px;perspective:1200px}
+  .shot-wrap{position:relative;transition:transform .25s ease-out;will-change:transform}
+  .shot-wrap img.shot{display:block;width:100%}
+  .shot-wrap img.shot.alt{position:absolute;inset:0;opacity:0;transition:opacity .9s ease}
+  .shot-wrap.swap img.shot.alt{opacity:1}
+  .owl-peek{position:absolute;width:clamp(80px,12vw,128px);right:-2%;bottom:6%;z-index:2;animation:bob 5s ease-in-out infinite;filter:drop-shadow(0 10px 18px rgba(0,0,0,.18))}
+  .owl-peek2{position:absolute;width:clamp(64px,9vw,96px);left:-1%;top:14%;z-index:2;animation:bob 6.5s ease-in-out 1s infinite;filter:drop-shadow(0 10px 18px rgba(0,0,0,.15))}
+  @keyframes bob{0%,100%{transform:translateY(0) rotate(-1.2deg)}50%{transform:translateY(-12px) rotate(1.8deg)}}
+  .hero-fade{height:120px;background:linear-gradient(to bottom,rgba(245,245,247,0),var(--bg2));margin-top:-90px;position:relative;z-index:0}
 
-  /* hero */
-  .hero{text-align:center;padding:96px 0 0;background:radial-gradient(120% 80% at 50% 0%,#fff 40%,#fff5f5 100%)}
-  .kicker{font-size:15px;font-weight:600;color:var(--red);letter-spacing:.02em;margin-bottom:18px}
-  .hero h1{font-size:68px;margin-bottom:22px}
-  .hero .lead{font-size:23px;color:var(--sub);max-width:660px;margin:0 auto 34px;line-height:1.45}
-  .hero .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
-  .hero .micro{font-size:14px;color:#a1a1a6}
-  .shot{margin:64px auto 0;max-width:1000px;padding:0 20px}
-  .shot img{width:100%;height:auto;display:block;filter:drop-shadow(0 30px 60px rgba(0,0,0,.18))}
-  @media(max-width:720px){.hero{padding:64px 0 0}.hero h1{font-size:40px}.hero .lead{font-size:19px}.shot{margin-top:44px}}
+  /* ---------- trust strip ---------- */
+  .strip{background:var(--bg2);padding:34px 0 56px}
+  .strip .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+  .chip{background:#fff;border:1px solid var(--hair);border-radius:18px;padding:20px 22px;display:flex;gap:14px;align-items:flex-start}
+  .chip .ic{width:40px;height:40px;border-radius:12px;background:rgba(232,57,46,.09);display:flex;align-items:center;justify-content:center;color:var(--red);flex:0 0 auto}
+  .chip b{display:block;font-size:15.5px;margin-bottom:3px}
+  .chip span{font-size:13.5px;color:var(--sub);line-height:1.5}
 
-  /* section base */
-  section{padding:110px 0}
-  .center{text-align:center}
-  .eyebrow{font-size:15px;font-weight:600;color:var(--red);margin-bottom:12px}
-  h2.big{font-size:44px;margin-bottom:16px}
-  .sec-lead{font-size:20px;color:var(--sub);max-width:620px;margin:0 auto}
-  @media(max-width:720px){section{padding:72px 0}h2.big{font-size:32px}}
+  /* ---------- sections ---------- */
+  section.feature{padding:88px 0}
+  section.feature.gray{background:var(--bg2)}
+  .sec-head{text-align:center;max-width:660px;margin:0 auto 54px}
+  .sec-head .tag{font-size:14px;font-weight:600;color:var(--red);letter-spacing:.06em;text-transform:uppercase}
+  .sec-head h2{font-size:clamp(28px,4.4vw,42px);margin:10px 0 12px}
+  .sec-head p{color:var(--sub);font-size:17.5px}
 
-  /* alternating feature rows */
-  .rows{margin-top:70px;display:flex;flex-direction:column;gap:90px}
-  .row{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-  .row.flip .copy{order:2}
-  .row .art{display:flex;justify-content:center}
-  .row .art img{width:230px;height:auto}
-  .row h3{font-size:30px;margin-bottom:14px}
-  .row p{font-size:18px;color:var(--sub);line-height:1.6}
-  @media(max-width:720px){.row,.row.flip .copy{grid-template-columns:1fr;order:0;text-align:center}.row .art img{width:170px}.rows{gap:60px}}
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  @media(max-width:860px){.duo{grid-template-columns:1fr;gap:30px}}
+  .duo .shot-card img{display:block}
+  .duo h3{font-size:clamp(24px,3.4vw,32px);margin-bottom:14px}
+  .duo p{color:var(--sub);margin-bottom:12px}
+  .ticks{list-style:none;margin-top:18px}
+  .ticks li{display:flex;gap:12px;align-items:flex-start;margin-bottom:12px;font-size:16px}
+  .ticks svg{flex:0 0 auto;margin-top:3px;color:var(--red)}
+
+  /* mascot feature grid */
+  .grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px}
+  .fcard{background:#fff;border:1px solid var(--hair);border-radius:22px;padding:30px 26px;text-align:center;transition:transform .35s var(--ease),box-shadow .35s}
+  .fcard:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,.09)}
+  .fcard img{height:104px;width:auto;margin-bottom:16px;animation:bob 6s ease-in-out infinite}
+  .fcard:nth-child(2) img{animation-delay:.8s}
+  .fcard:nth-child(3) img{animation-delay:1.6s}
+  .fcard:nth-child(4) img{animation-delay:2.4s}
+  .fcard b{display:block;font-size:17px;margin-bottom:7px}
+  .fcard span{font-size:14px;color:var(--sub);line-height:1.55}
 
   /* steps */
-  #install{background:var(--bg2);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
-  .steps{margin-top:64px;display:grid;grid-template-columns:1fr 1fr;gap:50px;max-width:920px;margin-left:auto;margin-right:auto}
-  @media(max-width:720px){.steps{grid-template-columns:1fr;gap:40px}}
-  .step h3{font-size:22px;margin-bottom:18px;display:flex;align-items:center;gap:10px}
-  .step .os-ico{font-size:24px}
-  .stepitem{display:flex;gap:14px;margin-bottom:16px}
-  .num{flex:none;width:30px;height:30px;border-radius:50%;background:var(--ink);color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;font-family:var(--sf)}
-  .stepitem .tx{font-size:16px;color:#3a3a3c;line-height:1.5}
-  .note{background:#fff;border:1px solid #ffd9d9;border-radius:14px;padding:14px 16px;margin-top:18px;font-size:14px;color:var(--red-deep)}
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px}
+  .step{background:#fff;border:1px solid var(--hair);border-radius:20px;padding:26px 24px;position:relative}
+  .step .num{font-size:13px;font-weight:700;color:var(--red);letter-spacing:.1em;margin-bottom:10px}
+  .step b{display:block;font-size:16.5px;margin-bottom:7px}
+  .step span{font-size:14px;color:var(--sub);line-height:1.55}
 
-  /* download CTA */
-  #download{text-align:center}
-  .dlrow{margin-top:42px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
-  .dlbtn{display:flex;flex-direction:column;align-items:center;gap:3px}
-  .dlbtn .sub2{font-size:13px;color:#a1a1a6}
+  /* ---------- download ---------- */
+  .dl{padding:96px 0 90px;text-align:center;position:relative;overflow:hidden}
+  .dl .owl-dl{height:120px;margin-bottom:18px;animation:bob 5.5s ease-in-out infinite}
+  .dl h2{font-size:clamp(30px,4.6vw,44px);margin-bottom:10px}
+  .dl p.sub2{color:var(--sub);margin-bottom:34px}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;max-width:760px;margin:0 auto;text-align:left}
+  .dcard{background:#fff;border:1px solid var(--hair);border-radius:22px;padding:30px 28px;transition:transform .35s var(--ease),box-shadow .35s}
+  .dcard:hover{transform:translateY(-5px);box-shadow:0 20px 44px rgba(0,0,0,.1)}
+  .dcard .os{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  .dcard .os b{font-size:19px}
+  .dcard .meta{font-size:13px;color:var(--sub);margin-bottom:18px;line-height:1.6}
+  .dcard .meta .ok{color:#2e9e6b;font-weight:600}
+  .dcard .btn{width:100%;justify-content:center}
+  .dl .help-link{display:inline-block;margin-top:26px;font-size:15px;font-weight:500}
 
-  /* footer */
-  footer{background:#f5f5f7;color:var(--sub);padding:50px 0;font-size:14px;border-top:1px solid var(--hair)}
-  footer .wrap{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:flex-start}
-  footer .logo{height:22px;margin-bottom:10px}
+  /* ---------- footer ---------- */
+  footer{background:var(--bg2);color:#86868b;padding:42px 0;font-size:13px;border-top:1px solid var(--hair);text-align:center;line-height:1.8}
   footer a{color:var(--ink);text-decoration:underline}
-  footer .legal{max-width:520px;line-height:1.7;font-size:13px;color:#86868b}
+
+  /* ---------- motion: reveal ---------- */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  .reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}.reveal.d4{transition-delay:.32s}
+  @media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none !important;transition:none !important}
+    .reveal{opacity:1;transform:none}
+  }
 </style>
 </head>
-<body id="top">
+<body>
 
-<nav><div class="wrap">
-  <a href="#top"><img class="logo" src="assets/logo.png" alt="ZenityX"></a>
-  <div class="links"><a href="#features">ฟีเจอร์</a><a href="#install">วิธีติดตั้ง</a><a href="/help">ช่วยเหลือ</a><a href="#download">ดาวน์โหลด</a></div>
-  <a class="nbtn" href="#download">ดาวน์โหลด</a>
+<nav id="nav"><div class="wrap">
+  <a href="/"><img class="logo" src="assets/logo.png" alt="ZenityX Desk"></a>
+  <div class="links">
+    <a href="#features">ฟีเจอร์</a>
+    <a href="#how">วิธีใช้</a>
+    <a href="/help">ช่วยเหลือ</a>
+    <a class="btn-nav" href="#download">ดาวน์โหลด</a>
+  </div>
 </div></nav>
 
 <header class="hero">
+  <div class="blob b1"></div><div class="blob b2"></div>
   <div class="wrap">
-    <div class="kicker">ZENITYX DESK · สำหรับการสอนออนไลน์</div>
-    <h1>ควบคุมหน้าจอ<br>เพื่อการสอน <span class="accent">1:1</span></h1>
-    <p class="lead">ครูเชื่อมต่อและควบคุมหน้าจอนักเรียนได้แบบเรียลไทม์ ผ่านเซิร์ฟเวอร์ของ ZenityX เอง — ลื่นไหล ปลอดภัย ข้อมูลอยู่กับเรา</p>
-    <div class="cta">
-      <a class="btn btn-primary btn-lg" href="#download">ดาวน์โหลดฟรี</a>
-      <a class="btn btn-ghost btn-lg" href="#features">ดูฟีเจอร์</a>
+    <span class="eyebrow reveal"><span class="dot"></span>เครื่องมือการเรียน 1:1 ของ ZenityX</span>
+    <h1 class="reveal d1">ให้ผู้สอนช่วยคุณ<br><span class="accent">ถึงหน้าจอ</span></h1>
+    <p class="lead reveal d2">ZenityX Desk เชื่อมผู้สอนเข้ามาเห็นและช่วยบนหน้าจอของคุณได้ทันที ติดขัดตรงไหน ไม่ต้องอธิบายยาว — ให้ผู้สอนทำให้ดูตรงนั้นเลย</p>
+    <div class="cta-row reveal d3">
+      <a class="btn btn-primary" href="https://pub-2b7122b3489f4bf68928df877ee48d89.r2.dev/ZenityX-Desk.dmg">
+        <svg viewBox="0 0 384 512" width="20" height="20" fill="currentColor"><path d="M318.7 268c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.6zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+        <span>ดาวน์โหลดสำหรับ Mac<small>Apple notarized · เปิดได้ทันที</small></span>
+      </a>
+      <a class="btn btn-secondary" href="https://pub-2b7122b3489f4bf68928df877ee48d89.r2.dev/ZenityX-Desk-Windows-x64.zip">
+        <svg viewBox="0 0 448 512" width="19" height="19" fill="currentColor"><path d="M0 93.7l183.6-25.3v177.4H0V93.7zm0 324.6l183.6 25.3V268.4H0v149.9zm203.8 28L448 480V268.4H203.8v177.9zm0-380.6v180.1H448V32L203.8 65.7z"/></svg>
+        <span>ดาวน์โหลดสำหรับ Windows<small>แบบพกพา · ไม่ต้องติดตั้ง</small></span>
+      </a>
     </div>
-    <div class="micro">macOS · Windows · ฟรีสำหรับ ZenityX</div>
+    <div class="trust-note reveal d4">ฟรีสำหรับนักเรียน ZenityX · <b>เวอร์ชัน Mac ผ่านการรับรองจาก Apple แล้ว</b></div>
+
+    <div class="stage reveal d4">
+      <div class="shot-wrap" id="shotWrap">
+        <picture>
+          <source srcset="assets/shots/app-home.webp" type="image/webp">
+          <img class="shot" src="assets/shots/app-home.png" alt="หน้าจอจริงของ ZenityX Desk" width="2224" height="1544">
+        </picture>
+        <picture>
+          <source srcset="assets/shots/app-fav.webp" type="image/webp">
+          <img class="shot alt" src="assets/shots/app-fav.png" alt="แท็บรายการโปรดของ ZenityX Desk" width="2224" height="1544" loading="lazy">
+        </picture>
+        <img class="owl-peek" src="assets/m-01-wave.png" alt="">
+        <img class="owl-peek2" src="assets/m-12-think.png" alt="">
+      </div>
+    </div>
   </div>
-  <div class="shot"><img src="assets/hero-app.png" alt="หน้าจอแอป ZenityX Desk"></div>
+  <div class="hero-fade"></div>
 </header>
 
-<section id="features"><div class="wrap">
-  <div class="center">
-    <div class="eyebrow">ออกแบบเพื่อห้องเรียน 1:1</div>
-    <h2 class="big">ทุกอย่างที่ครูต้องการ</h2>
-    <p class="sec-lead">เรียบง่ายสำหรับนักเรียน ทรงพลังสำหรับครู</p>
-  </div>
-  <div class="rows">
-    <div class="row">
-      <div class="copy"><h3>คุมจอนักเรียนแบบเรียลไทม์</h3><p>ครูเห็นและควบคุมหน้าจอนักเรียนได้ทันที สอนการใช้โปรแกรม คลิกแทน พิมพ์แทน แก้ปัญหาให้ถึงที่ เหมือนนั่งข้างกัน</p></div>
-      <div class="art"><img src="assets/m-07-screen.png" alt=""></div>
+<div class="strip">
+  <div class="wrap">
+    <div class="chip reveal">
+      <div class="ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div><b>เซิร์ฟเวอร์ของ ZenityX เอง</b><span>ข้อมูลวิ่งผ่านเซิร์ฟเวอร์ที่เราดูแลเอง เข้ารหัสตลอดทาง ไม่ผ่านบริการสาธารณะ</span></div>
     </div>
-    <div class="row flip">
-      <div class="copy"><h3>เซิร์ฟเวอร์ของเราเอง ปลอดภัย</h3><p>ทุกการเชื่อมต่อวิ่งผ่านเซิร์ฟเวอร์ ZenityX โดยตรง ไม่ผ่านบุคคลที่สาม เข้ารหัสปลายทางถึงปลายทาง ข้อมูลอยู่ในมือเรา 100%</p></div>
-      <div class="art"><img src="assets/m-10-lock.png" alt=""></div>
+    <div class="chip reveal d1">
+      <div class="ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></div>
+      <div><b>เริ่มได้ในไม่กี่วินาที</b><span>เปิดแอป กดปุ่มส่งรหัสให้ผู้สอน แค่นั้น — ระบบเชื่อมต่อเซิร์ฟเวอร์ให้อัตโนมัติ</span></div>
     </div>
-    <div class="row">
-      <div class="copy"><h3>เปิดปุ๊บ พร้อมสอน</h3><p>เปิดแอป เห็น ID ของเครื่อง ส่งให้ครู เชื่อมต่อได้เลย ไม่ต้องตั้งค่าเซิร์ฟเวอร์ ไม่ต้องสมัครอะไร — พร้อมใช้ตั้งแต่ครั้งแรก</p></div>
-      <div class="art"><img src="assets/m-02-point.png" alt=""></div>
+    <div class="chip reveal d2">
+      <div class="ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+      <div><b>ฟรีสำหรับนักเรียน</b><span>นักเรียนและทีม ZenityX ใช้งานได้ฟรี ไม่มีโฆษณา ไม่มีการเก็บค่าบริการ</span></div>
     </div>
   </div>
-</div></section>
+</div>
 
-<section id="install"><div class="wrap">
-  <div class="center">
-    <div class="eyebrow">เริ่มใน 2 นาที</div>
-    <h2 class="big">วิธีติดตั้ง</h2>
-    <p class="sec-lead">ครั้งแรกอาจเจอคำเตือนความปลอดภัยของระบบ — ทำตามนี้</p>
-  </div>
-  <div class="steps">
-    <div class="step">
-      <h3><span class="os-ico"><svg viewBox="0 0 384 512" width="19" height="19" fill="currentColor" aria-label="macOS"><path d="M318.7 268c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.6zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg></span> macOS</h3>
-      <div class="stepitem"><span class="num">1</span><span class="tx">เปิด <b>.dmg</b> แล้วลาก <b>ZenityX Desk</b> ลง Applications</span></div>
-      <div class="stepitem"><span class="num">2</span><span class="tx">เปิดครั้งแรก: <b>คลิกขวา</b> ที่แอป → <b>Open</b> → ยืนยัน</span></div>
-      <div class="stepitem"><span class="num">3</span><span class="tx">เปิด <b>Screen Recording</b> + <b>Accessibility</b> ใน System Settings → Privacy</span></div>
-      <div class="stepitem"><span class="num">4</span><span class="tx">ปิดแล้วเปิดแอปใหม่ — พร้อมเชื่อมต่อ</span></div>
-      <div class="note">ถ้าขึ้น "unidentified developer" ใช้คลิกขวา → Open ครั้งแรกเท่านั้น</div>
+<section class="feature" id="features">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="tag">ออกแบบเพื่อการเรียน</div>
+      <h2>หน้าจอเดียว เข้าใจตรงกัน</h2>
+      <p>ทุกอย่างในแอปคิดมาเพื่อนักเรียน — ภาษาไทยทั้งแอป ปุ่มเดียวส่งรหัส และน้องฮูกคอยบอกสถานะ</p>
     </div>
-    <div class="step">
-      <h3><span class="os-ico"><svg viewBox="0 0 448 512" width="17" height="17" fill="currentColor" aria-label="Windows"><path d="M0 93.7l183.6-25.3v177.4H0V93.7zm0 324.6l183.6 25.3V268.4H0v149.9zm203.8 28L448 480V268.4H203.8v177.9zm0-380.6v180.1H448V32L203.8 65.7z"/></svg></span> Windows</h3>
-      <div class="stepitem"><span class="num">1</span><span class="tx">แตกไฟล์ <b>.zip</b> ลงโฟลเดอร์ที่ต้องการ</span></div>
-      <div class="stepitem"><span class="num">2</span><span class="tx">เปิด <b>rustdesk.exe</b> ในโฟลเดอร์</span></div>
-      <div class="stepitem"><span class="num">3</span><span class="tx">ถ้า SmartScreen เตือน: <b>More info</b> → <b>Run anyway</b></span></div>
-      <div class="stepitem"><span class="num">4</span><span class="tx">แอปเชื่อมเซิร์ฟเวอร์ ZenityX อัตโนมัติ — พร้อมใช้</span></div>
-      <div class="note">คำเตือนเกิดเพราะยังไม่ได้เซ็นใบรับรอง (กำลังดำเนินการ) — ไฟล์ปลอดภัย</div>
+    <div class="duo">
+      <div class="shot-card reveal">
+        <picture>
+          <source srcset="assets/shots/app-home.webp" type="image/webp">
+          <img src="assets/shots/app-home.png" alt="หน้าหลัก ZenityX Desk ภาษาไทย" loading="lazy">
+        </picture>
+      </div>
+      <div class="reveal d1">
+        <h3>ส่งรหัสให้ผู้สอน ในปุ่มเดียว</h3>
+        <p>ไม่ต้องไล่คัดลอกทีละช่อง — กดปุ่มเดียว แอปรวม ID และรหัสผ่านเป็นข้อความพร้อมส่ง วางต่อใน LINE หรือแชตไหนก็ได้</p>
+        <ul class="ticks">
+          <li><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>ภาษาไทยทั้งแอป ตั้งแต่เปิดครั้งแรก</li>
+          <li><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>รหัสผ่านแบบใช้ครั้งเดียว เปลี่ยนใหม่ทุกการเชื่อมต่อ</li>
+          <li><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>เห็นชัดเสมอว่ากำลังมีใครเชื่อมต่ออยู่ และตัดการเชื่อมต่อได้ทุกเมื่อ</li>
+        </ul>
+      </div>
     </div>
   </div>
-</div></section>
+</section>
 
-<section id="download"><div class="wrap">
-  <div class="eyebrow">ฟรีสำหรับนักเรียนและทีม ZenityX</div>
-  <h2 class="big">ดาวน์โหลด ZenityX Desk</h2>
-  <p class="sec-lead" style="margin-bottom:6px">เลือกระบบของคุณ แล้วเริ่มได้เลย</p>
-  <div class="dlrow">
-    <a class="btn btn-dark btn-lg dlbtn" href="https://pub-2b7122b3489f4bf68928df877ee48d89.r2.dev/ZenityX-Desk.dmg" download>ดาวน์โหลดสำหรับ Mac<span class="sub2">Apple Silicon · .dmg · ~26 MB</span></a>
-    <a class="btn btn-dark btn-lg dlbtn" href="https://pub-2b7122b3489f4bf68928df877ee48d89.r2.dev/ZenityX-Desk-Windows-x64.zip" download>ดาวน์โหลดสำหรับ Windows<span class="sub2">64-bit · .zip · ~30 MB</span></a>
+<section class="feature gray">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="tag">ครบสำหรับคาบเรียน</div>
+      <h2>มากกว่าการเห็นหน้าจอ</h2>
+      <p>เครื่องมือที่ใช้จริงในคาบเรียน 1:1 — อยู่ในแอปเดียว ไม่ต้องสลับโปรแกรม</p>
+    </div>
+    <div class="grid4">
+      <div class="fcard reveal"><img src="assets/m-07-screen.png" alt="" loading="lazy"><b>เห็นและช่วยบนจอจริง</b><span>ผู้สอนดูหน้าจอ ขยับเมาส์ และพิมพ์ช่วยได้เหมือนนั่งข้างกัน</span></div>
+      <div class="fcard reveal d1"><img src="assets/m-13-headset.png" alt="" loading="lazy"><b>คุยเสียงและแชตในตัว</b><span>โทรคุยเสียงหรือพิมพ์แชตระหว่างเรียนได้ ไม่ต้องเปิดโปรแกรมเพิ่ม</span></div>
+      <div class="fcard reveal d2"><img src="assets/m-10-lock.png" alt="" loading="lazy"><b>คุณคุมสิทธิ์เองทั้งหมด</b><span>ทุกการเชื่อมต่อต้องมีรหัสจากคุณ และหยุดได้ทันทีที่ต้องการ</span></div>
+      <div class="fcard reveal d3"><img src="assets/m-14-teach.png" alt="" loading="lazy"><b>สร้างมาเพื่อการสอน</b><span>พัฒนาโดยทีม ZenityX เพื่อคลาสเรียน 1:1 โดยเฉพาะ ไม่ใช่เครื่องมือไอทีทั่วไป</span></div>
+    </div>
   </div>
-</div></section>
+</section>
+
+<section class="feature" id="how">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="tag">เริ่มใช้งาน</div>
+      <h2>พร้อมเรียนใน 4 ขั้น</h2>
+      <p>ติดตั้งครั้งเดียว ใช้ได้ทุกคาบเรียน</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="num">ขั้นที่ 01</div><b>ดาวน์โหลดและเปิดแอป</b><span>เลือกเวอร์ชัน Mac หรือ Windows ด้านล่าง — เวอร์ชัน Mac เปิดได้ทันที ไม่มีคำเตือน</span></div>
+      <div class="step reveal d1"><div class="num">ขั้นที่ 02</div><b>อนุญาตสิทธิ์ครั้งแรก</b><span>ทำตามการ์ดสีแดงในแอปเพื่อเปิดสิทธิ์หน้าจอ ทำครั้งเดียวจบ <a href="/help#mac">ดูวิธี</a></span></div>
+      <div class="step reveal d2"><div class="num">ขั้นที่ 03</div><b>กดส่งรหัสให้ผู้สอน</b><span>ปุ่มเดียวคัดลอก ID และรหัสผ่านพร้อมส่ง — วางใน LINE ส่งให้ผู้สอนได้เลย</span></div>
+      <div class="step reveal d3"><div class="num">ขั้นที่ 04</div><b>เริ่มเรียนได้เลย</b><span>ผู้สอนเชื่อมต่อเข้ามา เห็นหน้าจอคุณ และช่วยสอนได้ทันที</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="dl" id="download">
+  <div class="blob b1" style="top:auto;bottom:-220px;left:-160px"></div>
+  <div class="wrap">
+    <img class="owl-dl reveal" src="assets/m-03-thumbsup.png" alt="">
+    <h2 class="reveal d1">ดาวน์โหลด ZenityX Desk</h2>
+    <p class="sub2 reveal d2">เวอร์ชัน 1.4.6 · ฟรีสำหรับนักเรียนและทีม ZenityX</p>
+    <div class="cards">
+      <div class="dcard reveal d2">
+        <div class="os">
+          <svg viewBox="0 0 384 512" width="26" height="26" fill="currentColor"><path d="M318.7 268c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.6zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+          <b>macOS</b>
+        </div>
+        <div class="meta">รองรับ macOS 12.3 ขึ้นไป (Apple Silicon)<br><span class="ok">ผ่านการรับรอง (notarized) จาก Apple — เปิดได้ทันที ไม่มีคำเตือน</span></div>
+        <a class="btn btn-primary" href="https://pub-2b7122b3489f4bf68928df877ee48d89.r2.dev/ZenityX-Desk.dmg">ดาวน์โหลด .dmg</a>
+      </div>
+      <div class="dcard reveal d3">
+        <div class="os">
+          <svg viewBox="0 0 448 512" width="24" height="24" fill="currentColor"><path d="M0 93.7l183.6-25.3v177.4H0V93.7zm0 324.6l183.6 25.3V268.4H0v149.9zm203.8 28L448 480V268.4H203.8v177.9zm0-380.6v180.1H448V32L203.8 65.7z"/></svg>
+          <b>Windows</b>
+        </div>
+        <div class="meta">รองรับ Windows 10/11 (64-bit) แบบพกพา ไม่ต้องติดตั้ง<br>หาก SmartScreen แจ้งเตือน: กด More info แล้ว Run anyway <a href="/help#windows">ดูวิธี</a></div>
+        <a class="btn btn-secondary" href="https://pub-2b7122b3489f4bf68928df877ee48d89.r2.dev/ZenityX-Desk-Windows-x64.zip">ดาวน์โหลด .zip</a>
+      </div>
+    </div>
+    <a class="help-link" href="/help">มีปัญหาการติดตั้งหรือเชื่อมต่อ? เปิดหน้าช่วยเหลือ</a>
+  </div>
+</section>
 
 <footer><div class="wrap">
-  <div>
-    <img class="logo" src="assets/logo.png" alt="ZenityX">
-    <div>ZenityX — สถาบัน AI Education · <a href="https://zenityxai.com">zenityxai.com</a></div>
-    <div style="margin-top:6px"><a href="/help">ช่วยเหลือ</a> · <a href="/privacy">นโยบายความเป็นส่วนตัว</a></div>
-    <div style="margin-top:8px;color:#a1a1a6">© 2026 ZenityX (เซนนิตี้เอ็กซ์)</div>
-  </div>
-  <div class="legal">
-    ZenityX Desk สร้างต่อยอดจาก <a href="https://rustdesk.com">RustDesk</a> (โอเพนซอร์ส AGPL-3.0)
-    ซอร์สโค้ดของเวอร์ชันที่แก้ไขมีให้ตามเงื่อนไข AGPL — ติดต่อ ZenityX เพื่อขอรับ
-    เครื่องหมายการค้า RustDesk เป็นของเจ้าของเดิม
-  </div>
+  ZenityX — สถาบัน AI Education · <a href="https://zenityxai.com">zenityxai.com</a> · <a href="/help">ช่วยเหลือ</a> · <a href="/privacy">นโยบายความเป็นส่วนตัว</a><br>
+  © 2026 ZenityX (เซนนิตี้เอ็กซ์) · สร้างต่อยอดจาก <a href="https://rustdesk.com">RustDesk</a> (AGPL-3.0)
 </div></footer>
 
+<script>
+(function(){
+  var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // nav border on scroll
+  var nav = document.getElementById('nav');
+  addEventListener('scroll', function(){ nav.classList.toggle('scrolled', scrollY > 8); }, {passive:true});
+
+  // reveal on scroll
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  }, {threshold:.14});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  if (reduced) return;
+
+  // hero screenshot: gentle tilt following pointer + auto crossfade between tabs
+  var wrap = document.getElementById('shotWrap');
+  if (wrap){
+    var stage = wrap.parentElement;
+    stage.addEventListener('pointermove', function(ev){
+      var r = stage.getBoundingClientRect();
+      var x = (ev.clientX - r.left)/r.width - .5, y = (ev.clientY - r.top)/r.height - .5;
+      wrap.style.transform = 'rotateY(' + (x*4) + 'deg) rotateX(' + (-y*3) + 'deg)';
+    });
+    stage.addEventListener('pointerleave', function(){ wrap.style.transform = ''; });
+    setInterval(function(){ wrap.classList.toggle('swap'); }, 5200);
+  }
+})();
+</script>
 </body>
 </html>
