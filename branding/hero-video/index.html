@@ -5,6 +5,8 @@
 <style>
   @font-face { font-family: "IBM Plex Sans Thai"; font-weight: 400;
     src: url("fonts/IBMPlexSansThai-Regular.ttf") format("truetype"); }
+  @font-face { font-family: "IBM Plex Sans Thai"; font-weight: 500;
+    src: url("fonts/IBMPlexSansThai-Medium.ttf") format("truetype"); }
   @font-face { font-family: "IBM Plex Sans Thai"; font-weight: 600;
     src: url("fonts/IBMPlexSansThai-SemiBold.ttf") format("truetype"); }
   @font-face { font-family: "IBM Plex Sans Thai"; font-weight: 700;
@@ -21,101 +23,119 @@
     color: #1d1d1f;
   }
 
-  /* ---------- headline block ---------- */
-  .scene-content {
-    position: relative; z-index: 2;
-    width: 100%; height: 100%;
-    padding: 0 150px;
-    display: flex; flex-direction: column; justify-content: center;
-    gap: 10px;
+  /* ---------- headline stage (centered, fills frame) ---------- */
+  .stage {
+    position: absolute; inset: 0; z-index: 2;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center; gap: 6px;
   }
-  .line { font-size: 142px; font-weight: 700; line-height: 1.18;
-          letter-spacing: -0.03em; white-space: nowrap; }
-  .line .w { display: inline-block; }
-  .line .sp { display: inline-block; width: .22em; }
 
-  /* word wrappers that host cursor / circle / marker */
+  /* quiet setup question — light voice */
+  .setup { font-size: 84px; font-weight: 400; color: #9a9aa1;
+           letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 10px; }
+  .setup .w { display: inline-block; }
+  .setup .qm { display: inline-block; color: #E8392E; font-weight: 600; }
+
+  /* payoff lines — heavy voice */
+  .lead { font-size: 124px; font-weight: 700; color: #1d1d1f;
+          letter-spacing: -0.035em; line-height: 1.16; white-space: nowrap; }
+  .lead .w { display: inline-block; }
+
+  /* word wrappers that host cursor / ring / marker */
   .anchor { position: relative; display: inline-block; }
 
-  /* hand-drawn red circle around "เห็น" */
-  .ring { position: absolute; left: -34px; top: -20px; width: calc(100% + 68px); height: calc(100% + 40px);
-          z-index: 3; overflow: visible; pointer-events: none; }
-  .ring path { fill: none; stroke: #E8392E; stroke-width: 9; stroke-linecap: round; }
+  /* the focal verbs stay ink so the red treatment pops */
+  .a-seen .seen, .a-help .help { position: relative; z-index: 1; display: inline-block; }
+
+  /* hand-drawn red ring around "เห็น" */
+  .ring { position: absolute; left: -40px; top: -22px;
+          width: calc(100% + 80px); height: calc(100% + 44px);
+          z-index: 3; overflow: visible; pointer-events: none; opacity: 0; }
+  .ring path { fill: none; stroke: #E8392E; stroke-width: 8.5;
+               stroke-linecap: round; }
 
   /* red marker sweep behind "ช่วย" */
-  .marker { position: absolute; left: -12px; right: -12px; bottom: 8px; height: 46%;
-            background: rgba(232,57,46,.26); border-radius: 6px;
-            transform: scaleX(0); transform-origin: left center; z-index: -1; }
-
-  /* teacher cursor (svg arrow + pill label) */
-  .cursor { position: absolute; z-index: 5; opacity: 0; }
-  .cursor .pill {
-    position: absolute; left: 34px; top: 38px;
-    background: #B3261E; color: #fff; font-size: 26px; font-weight: 600;
-    font-family: "IBM Plex Sans Thai", sans-serif; letter-spacing: 0;
-    padding: 6px 18px; border-radius: 8px; white-space: nowrap;
-  }
-  .cursor-1 { right: -64px; top: -34px; }
-  .cursor-2 { right: -58px; top: -26px; }
+  .marker { position: absolute; left: -14px; right: -14px; bottom: 14px;
+            height: 44%; background: rgba(232,57,46,.24); border-radius: 7px;
+            transform: scaleX(0); transform-origin: left center; z-index: 0; }
 
   /* click ripple on "ช่วย" */
-  .ripple { position: absolute; left: 50%; top: 55%; width: 130px; height: 130px;
-            margin: -65px 0 0 -65px; border: 6px solid #E8392E; border-radius: 50%;
-            opacity: 0; z-index: 3; }
+  .ripple { position: absolute; left: 50%; top: 52%; width: 150px; height: 150px;
+            margin: -75px 0 0 -75px; border: 6px solid #E8392E; border-radius: 50%;
+            opacity: 0; visibility: hidden; z-index: 4; }
 
-  /* ---------- resolve / lockup ---------- */
+  /* teacher cursor (arrow + label pill) */
+  .cursor { position: absolute; z-index: 5; opacity: 0; visibility: hidden; }
+  .cursor .pill {
+    position: absolute; left: 38px; top: 40px;
+    background: #B3261E; color: #fff; font-size: 27px; font-weight: 600;
+    font-family: "IBM Plex Sans Thai", sans-serif; letter-spacing: 0;
+    padding: 7px 19px; border-radius: 9px; white-space: nowrap;
+    box-shadow: 0 8px 20px rgba(179,38,30,.28);
+  }
+  .cur-seen { right: -78px; top: -52px; }
+  .cur-help { right: -54px; top: -30px; }
+
+  /* ---------- premium resolve ---------- */
   .resolve {
     position: absolute; inset: 0; z-index: 6;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    gap: 26px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 34px;
+    visibility: hidden;
   }
-  .owl { width: 300px; opacity: 0; }
-  .lockup { display: flex; align-items: center; gap: 22px; opacity: 0; }
-  .lockup img { width: 84px; height: 84px; border-radius: 19px; }
-  .lockup b { font-size: 84px; font-weight: 700; letter-spacing: -0.03em; }
-  .red-rule { width: 320px; height: 6px; background: #E8392E; border-radius: 3px;
-              transform: scaleX(0); transform-origin: center; }
-  .tagline { font-size: 38px; font-weight: 400; color: #8a8a8e; opacity: 0; }
+  .lockup { display: flex; align-items: center; gap: 30px; }
+  .lockup .app-icon { width: 156px; height: 156px; border-radius: 35px;
+    opacity: 0;
+    box-shadow: 0 44px 84px rgba(0,0,0,.18), 0 10px 26px rgba(0,0,0,.08); }
+  .lockup .wordmark { font-size: 96px; font-weight: 700;
+    letter-spacing: -0.035em; color: #1d1d1f; opacity: 0; }
+  .rule { width: 360px; height: 5px; background: #E8392E; border-radius: 3px;
+          transform: scaleX(0); transform-origin: center; }
+  .tagline { font-size: 38px; font-weight: 500; color: #86868b;
+             letter-spacing: -0.01em; opacity: 0; }
 </style>
 </head>
 <body>
 <div data-composition-id="root" data-width="1920" data-height="1080" data-start="0" data-duration="12" data-track-index="0">
 
   <!-- kinetic headline -->
-  <div class="scene-content">
-    <div class="line line-1">
-      <span class="w w-1a">ติด</span><span class="w w-1b">ตรง</span><span class="w w-1c">ไหน</span>
+  <div class="stage">
+    <div class="setup">
+      <span class="w s1">ติด</span><span class="w s2">ตรง</span><span class="w s3">ไหน</span><span class="qm">?</span>
     </div>
-    <div class="line line-2">
-      <span class="w w-2a">ให้</span><span class="w w-2b">ผู้สอน</span><span class="sp"></span><span class="anchor a-seen"><span class="w w-2c">เห็น</span>
+
+    <div class="lead lead-1">
+      <span class="w pre">ให้ผู้สอน</span><span class="anchor a-seen" data-layout-allow-overflow><span class="seen w">เห็น</span>
         <svg class="ring" viewBox="0 0 100 60" preserveAspectRatio="none">
           <path class="ring-path" pathLength="1"
             d="M 50 4 C 76 2, 97 12, 96 30 C 95 49, 73 57, 48 56 C 24 55, 4 47, 4 29 C 4 13, 26 3, 54 5" />
         </svg>
-        <span class="cursor cursor-1">
-          <svg width="44" height="48" viewBox="0 0 24 26"><path d="M3 1 L3 20 L8 15.5 L11.5 23.5 L15 22 L11.5 14 L18 14 Z" fill="#E8392E" stroke="#ffffff" stroke-width="1.6"/></svg>
+        <span class="cursor cur-seen">
+          <svg width="46" height="50" viewBox="0 0 24 26"><path d="M3 1 L3 20 L8 15.5 L11.5 23.5 L15 22 L11.5 14 L18 14 Z" fill="#E8392E" stroke="#ffffff" stroke-width="1.6"/></svg>
           <span class="pill">ผู้สอน</span>
         </span>
       </span>
     </div>
-    <div class="line line-3">
-      <span class="w w-3a">และ</span><span class="anchor a-help"><span class="w w-3b">ช่วย</span>
+
+    <div class="lead lead-2">
+      <span class="w pre2">และ</span><span class="anchor a-help" data-layout-allow-overflow><span class="help w">ช่วย</span>
         <span class="marker"></span>
         <span class="ripple"></span>
-        <span class="cursor cursor-2">
-          <svg width="44" height="48" viewBox="0 0 24 26"><path d="M3 1 L3 20 L8 15.5 L11.5 23.5 L15 22 L11.5 14 L18 14 Z" fill="#E8392E" stroke="#ffffff" stroke-width="1.6"/></svg>
-          <span class="pill">ผู้สอน</span>
-        </span>
-      </span><span class="w w-3c">ตรงนั้น</span>
+        <span class="cursor cur-help">
+          <svg width="46" height="50" viewBox="0 0 24 26"><path d="M3 1 L3 20 L8 15.5 L11.5 23.5 L15 22 L11.5 14 L18 14 Z" fill="#E8392E" stroke="#ffffff" stroke-width="1.6"/></svg>
+        </span></span><span class="w post">ตรงนั้น</span>
     </div>
   </div>
 
-  <!-- resolve lockup -->
+  <!-- premium resolve lockup -->
   <div class="resolve">
-    <img class="owl" src="assets/m-01-wave.png" alt="">
-    <div class="lockup"><img src="assets/app-icon.png" alt=""><b>ZenityX Desk</b></div>
-    <div class="red-rule"></div>
-    <div class="tagline">เครื่องมือการเรียนแบบ 1:1</div>
+    <div class="lockup">
+      <img class="app-icon" src="assets/app-icon.png" alt="">
+      <div class="wordmark">ZenityX Desk</div>
+    </div>
+    <div class="rule"></div>
+    <div class="tagline">ให้ผู้สอนช่วยคุณ — ถึงหน้าจอ</div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
@@ -123,60 +143,62 @@
     window.__timelines = window.__timelines || {};
     const tl = gsap.timeline({ paused: true });
 
-    /* ---------- line 1: ติดตรงไหน (slide decay) ---------- */
-    tl.fromTo(".w-1a", { x: 90, y: 24, opacity: 0 }, { x: 0, y: 0, opacity: 1, duration: 0.55, ease: "power4.out" }, 0.55);
-    tl.fromTo(".w-1b", { x: 55, y: 18, opacity: 0 }, { x: 0, y: 0, opacity: 1, duration: 0.5, ease: "back.out(1.3)" }, 0.74);
-    tl.fromTo(".w-1c", { x: 28, y: 12, opacity: 0 }, { x: 0, y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 0.92);
-
-    /* ---------- line 2: ให้ผู้สอนเห็น ---------- */
-    tl.fromTo(".w-2a", { x: -70, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "expo.out" }, 2.45);
-    tl.fromTo(".w-2b", { x: -44, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 2.62);
-    tl.fromTo(".w-2c", { scale: 0.85, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.55, ease: "back.out(1.5)" }, 2.8);
-
-    /* teacher cursor flies in and lands beside "เห็น" */
-    tl.fromTo(".cursor-1",
-      { x: 720, y: -360, opacity: 0 },
-      { x: 0, y: 0, opacity: 1, duration: 0.85, ease: "power4.out" }, 3.45);
-
-    /* hand-drawn red ring around "เห็น" */
+    /* deterministic hidden start for the drawn ring */
     tl.set(".ring-path", { strokeDasharray: 1, strokeDashoffset: 1 }, 0);
-    tl.to(".ring-path", { strokeDashoffset: 0, duration: 0.85, ease: "power2.inOut" }, 4.05);
 
-    /* ---------- line 3: และช่วยตรงนั้น ---------- */
-    tl.fromTo(".w-3a", { y: 46, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 5.3);
-    tl.fromTo(".w-3b", { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.55, ease: "back.out(1.7)" }, 5.48);
-    tl.fromTo(".w-3c", { x: 36, opacity: 0 }, { x: 0, opacity: 1, duration: 0.45, ease: "expo.out" }, 5.68);
+    /* ---------- setup: ติดตรงไหน? (light, gray) ---------- */
+    tl.fromTo(".s1", { y: 44, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 0.25);
+    tl.fromTo(".s2", { y: 36, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "power3.out" }, 0.40);
+    tl.fromTo(".s3", { y: 28, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 0.54);
+    tl.fromTo(".qm", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.42, ease: "back.out(2.2)" }, 0.82);
 
-    /* cursor hops from "เห็น" to "ช่วย" */
-    tl.to(".cursor-1", { x: 60, y: 60, opacity: 0, duration: 0.28, ease: "power2.in" }, 5.95);
-    tl.set(".cursor-1", { visibility: "hidden" }, 6.3);
-    tl.fromTo(".cursor-2",
-      { x: 320, y: -220, opacity: 0 },
-      { x: 0, y: 0, opacity: 1, duration: 0.5, ease: "expo.out" }, 6.12);
+    /* ---------- payoff line 1: ให้ผู้สอน + เห็น ---------- */
+    tl.fromTo(".pre", { y: 58, opacity: 0 }, { y: 0, opacity: 1, duration: 0.62, ease: "expo.out" }, 2.2);
+    tl.fromTo(".seen", { scale: 0.82, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.55, ease: "back.out(1.6)" }, 2.52);
 
-    /* marker sweep + click ripple on "ช่วย" */
-    tl.to(".marker", { scaleX: 1, duration: 0.55, ease: "power3.inOut" }, 6.55);
-    tl.fromTo(".cursor-2", { scale: 1 }, { scale: 0.88, duration: 0.12, ease: "power2.inOut", yoyo: true, repeat: 1 }, 6.6);
-    tl.fromTo(".ripple", { scale: 0.3, opacity: 0.8 }, { scale: 1.6, opacity: 0, duration: 0.65, ease: "power2.out" }, 6.66);
+    /* teacher cursor flies in and lands beside เห็น (parked just before its beat — no early-frame leak) */
+    tl.set(".cur-seen", { visibility: "visible", x: 300, y: -220, opacity: 0 }, 3.05);
+    tl.to(".cur-seen", { x: 0, y: 0, opacity: 1, duration: 0.8, ease: "power4.out" }, 3.1);
 
-    /* breathe: gentle drift of the whole block */
-    tl.to(".scene-content", { y: -8, duration: 1.4, ease: "sine.inOut" }, 7.0);
+    /* hand-drawn red ring around เห็น */
+    tl.set(".ring", { opacity: 1 }, 3.85);
+    tl.to(".ring-path", { strokeDashoffset: 0, duration: 0.85, ease: "power2.inOut" }, 3.9);
 
-    /* ---------- exit headline, resolve to brand ---------- */
-    tl.to(".line-1", { y: -90, opacity: 0, duration: 0.45, ease: "power2.in" }, 8.35);
-    tl.to(".line-2", { y: -90, opacity: 0, duration: 0.45, ease: "power2.in" }, 8.43);
-    tl.to(".line-3", { y: -90, opacity: 0, duration: 0.45, ease: "power2.in" }, 8.51);
-    tl.to(".cursor-2", { opacity: 0, duration: 0.3, ease: "power1.in" }, 8.4);
-    tl.set([".scene-content", ".cursor-2"], { visibility: "hidden" }, 9.05);
+    /* cursor leaves toward ช่วย */
+    tl.to(".cur-seen", { x: -150, y: 170, opacity: 0, duration: 0.4, ease: "power2.in" }, 4.95);
+    tl.set(".cur-seen", { visibility: "hidden" }, 5.4);
 
-    /* owl + lockup */
-    tl.fromTo(".owl", { scale: 0.4, y: 70, opacity: 0 }, { scale: 1, y: 0, opacity: 1, duration: 0.7, ease: "back.out(1.6)" }, 8.95);
-    tl.fromTo(".lockup", { x: -26, opacity: 0 }, { x: 0, opacity: 1, duration: 0.55, ease: "power3.out" }, 9.35);
-    tl.to(".red-rule", { scaleX: 1, duration: 0.55, ease: "expo.out" }, 9.55);
-    tl.fromTo(".tagline", { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" }, 9.7);
-    tl.to(".owl", { y: -10, duration: 0.7, ease: "sine.inOut", yoyo: true, repeat: 1 }, 10.1);
+    /* ---------- payoff line 2: และ + ช่วย + ตรงนั้น ---------- */
+    tl.fromTo(".pre2", { y: 52, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "expo.out" }, 5.1);
+    tl.fromTo(".help", { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.52, ease: "back.out(1.7)" }, 5.3);
+    tl.fromTo(".post", { y: 46, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "expo.out" }, 5.52);
 
-    /* ---------- final fade to white for seamless loop ---------- */
+    /* cursor reappears at ช่วย and clicks */
+    tl.set(".cur-help", { visibility: "visible", x: 150, y: -120, opacity: 0 }, 5.9);
+    tl.to(".cur-help", { x: 0, y: 0, opacity: 1, duration: 0.46, ease: "expo.out" }, 5.92);
+    tl.to(".marker", { scaleX: 1, duration: 0.55, ease: "power3.inOut" }, 6.28);
+    tl.fromTo(".cur-help", { scale: 1 }, { scale: 0.9, duration: 0.12, ease: "power2.inOut", yoyo: true, repeat: 1 }, 6.34);
+    tl.set(".ripple", { visibility: "visible", scale: 0.3, opacity: 0.85 }, 6.4);
+    tl.to(".ripple", { scale: 1.7, opacity: 0, duration: 0.62, ease: "power2.out" }, 6.4);
+    tl.set(".ripple", { visibility: "hidden" }, 7.05);
+
+    /* breathe: the full sentence sits, gently lifts */
+    tl.to(".stage", { y: -10, duration: 1.1, ease: "sine.inOut" }, 7.0);
+
+    /* ---------- exit headline ---------- */
+    tl.to(".cur-help", { opacity: 0, duration: 0.3, ease: "power1.in" }, 8.05);
+    tl.to(".stage", { y: -78, opacity: 0, duration: 0.55, ease: "power2.in", overwrite: "auto" }, 8.3);
+    tl.set(".stage", { visibility: "hidden" }, 8.85);
+
+    /* ---------- premium resolve (slow, confident) ---------- */
+    tl.set(".resolve", { visibility: "visible" }, 8.55);
+    tl.fromTo(".app-icon", { scale: 0.7, y: 44, opacity: 0 }, { scale: 1, y: 0, opacity: 1, duration: 0.82, ease: "back.out(1.5)" }, 8.7);
+    tl.fromTo(".wordmark", { x: -32, opacity: 0 }, { x: 0, opacity: 1, duration: 0.62, ease: "power3.out" }, 9.1);
+    tl.fromTo(".rule", { scaleX: 0 }, { scaleX: 1, duration: 0.62, ease: "expo.out" }, 9.5);
+    tl.fromTo(".tagline", { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "power2.out" }, 9.72);
+    tl.to(".app-icon", { y: -9, duration: 1.25, ease: "sine.inOut", yoyo: true, repeat: 1 }, 10.1);
+
+    /* ---------- fade to white for a seamless loop ---------- */
     tl.to(".resolve", { opacity: 0, duration: 0.55, ease: "power2.in" }, 11.4);
 
     window.__timelines["root"] = tl;
