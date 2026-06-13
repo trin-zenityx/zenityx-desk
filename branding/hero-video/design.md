@@ -20,3 +20,8 @@
 ## What NOT to do
 - No emojis, no gradients on text, no dark frames (white canvas throughout)
 - No element may sit outside the white canvas look — video edges must stay white
+
+## Render
+- Always render at 4K for crisp type on Retina (page shows it at ~1340 CSS px = ~2680 device px):
+  `npx hyperframes render . --resolution landscape-4k --quality high`
+- Then copy to `hero.mp4` + `../../site/assets/hero.mp4`; poster = frame ~7.8s scaled to 1920w.
