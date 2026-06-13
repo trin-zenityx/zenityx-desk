@@ -86,31 +86,34 @@
     const tl = gsap.timeline({ paused: true });
 
     /* ambient: one slow, calm push across the whole headline phase (Apple-style) */
-    tl.fromTo(".stage", { scale: 1.0 }, { scale: 1.035, duration: 9.3, ease: "none" }, 0);
+    tl.fromTo(".stage", { scale: 1.0 }, { scale: 1.035, duration: 8.9, ease: "none" }, 0);
 
-    /* S1 — ติดตรงไหน */
-    tl.fromTo(".s1 .inner", { y: 64, opacity: 0 }, { y: 0, opacity: 1, duration: 1.05, ease: "power2.out" }, 0.35);
-    tl.to(".s1 .inner", { y: -64, opacity: 0, duration: 0.7, ease: "power2.in" }, 2.8);
+    /* Each statement fully clears to white BEFORE the next appears — no overlap.
+       (out finishes, then a ~0.3s pause on white, then the next enters.) */
 
-    /* S2 — ให้ผู้สอนเห็น (เห็น is red) */
-    tl.fromTo(".s2 .inner", { y: 64, opacity: 0 }, { y: 0, opacity: 1, duration: 0.95, ease: "power2.out" }, 3.3);
-    tl.to(".s2 .inner", { y: -64, opacity: 0, duration: 0.7, ease: "power2.in" }, 5.9);
+    /* S1 — ติดตรงไหน : in 0.30-1.30, out 2.50-3.10 */
+    tl.fromTo(".s1 .inner", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 1.0, ease: "power2.out" }, 0.30);
+    tl.to(".s1 .inner", { y: -56, opacity: 0, duration: 0.6, ease: "power2.in" }, 2.50);
 
-    /* S3 — และช่วยตรงนั้น (ช่วย is red) */
-    tl.fromTo(".s3 .inner", { y: 64, opacity: 0 }, { y: 0, opacity: 1, duration: 0.95, ease: "power2.out" }, 6.3);
-    tl.to(".s3 .inner", { y: -64, opacity: 0, duration: 0.7, ease: "power2.in" }, 8.6);
-    tl.set(".stage", { visibility: "hidden" }, 9.35);
+    /* S2 — ให้ผู้สอนเห็น : in 3.40-4.30, out 5.50-6.10 */
+    tl.fromTo(".s2 .inner", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, ease: "power2.out" }, 3.40);
+    tl.to(".s2 .inner", { y: -56, opacity: 0, duration: 0.6, ease: "power2.in" }, 5.50);
 
-    /* Resolve — calm, confident settle (no bounce) */
-    tl.set(".resolve", { visibility: "visible" }, 9.2);
-    tl.fromTo(".app-icon", { scale: 0.92, y: 26, opacity: 0 }, { scale: 1, y: 0, opacity: 1, duration: 0.9, ease: "power3.out" }, 9.25);
-    tl.fromTo(".wordmark", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 9.65);
-    tl.fromTo(".rule", { scaleX: 0 }, { scaleX: 1, duration: 0.65, ease: "power2.out" }, 10.0);
-    tl.fromTo(".tagline", { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" }, 10.2);
-    tl.to(".app-icon", { y: -8, duration: 1.3, ease: "sine.inOut", yoyo: true, repeat: 1 }, 10.7);
+    /* S3 — และช่วยตรงนั้น : in 6.40-7.30, out 8.30-8.90 */
+    tl.fromTo(".s3 .inner", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, ease: "power2.out" }, 6.40);
+    tl.to(".s3 .inner", { y: -56, opacity: 0, duration: 0.6, ease: "power2.in" }, 8.30);
+    tl.set(".stage", { visibility: "hidden" }, 9.0);
+
+    /* Resolve — calm, confident settle (no bounce), after a clean white beat */
+    tl.set(".resolve", { visibility: "visible" }, 9.1);
+    tl.fromTo(".app-icon", { scale: 0.92, y: 26, opacity: 0 }, { scale: 1, y: 0, opacity: 1, duration: 0.9, ease: "power3.out" }, 9.15);
+    tl.fromTo(".wordmark", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, 9.55);
+    tl.fromTo(".rule", { scaleX: 0 }, { scaleX: 1, duration: 0.65, ease: "power2.out" }, 9.9);
+    tl.fromTo(".tagline", { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" }, 10.1);
+    tl.to(".app-icon", { y: -8, duration: 1.2, ease: "sine.inOut", yoyo: true, repeat: 1 }, 10.7);
 
     /* fade to white for a seamless loop */
-    tl.to(".resolve", { opacity: 0, duration: 0.6, ease: "power2.in" }, 11.35);
+    tl.to(".resolve", { opacity: 0, duration: 0.6, ease: "power2.in" }, 11.4);
 
     window.__timelines["root"] = tl;
   </script>
