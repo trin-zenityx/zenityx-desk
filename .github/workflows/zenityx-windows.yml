@@ -85,12 +85,27 @@ jobs:
       - name: Build ZenityX Desk (Windows)
         shell: pwsh
         run: |
-          python build.py --portable --hwcodec --flutter --vram --skip-portable-pack
+          # No --skip-portable-pack: let RustDesk's portable packer (libs/portable)
+          # bundle the whole build folder into a single click-to-install .exe.
+          python build.py --portable --hwcodec --flutter --vram
+          # Keep the portable folder too (zip channel + sign-test PoC):
           mv ./flutter/build/windows/x64/runner/Release ./ZenityX-Desk-Windows
+          # The packer drops rustdesk-<version>-install.exe at the repo root:
+          $exe = Get-ChildItem -Path . -Filter "rustdesk-*-install.exe" | Select-Object -First 1
+          if (-not $exe) { Write-Error "installer exe was not produced by the portable packer"; exit 1 }
+          Copy-Item $exe.FullName ./ZenityX-Desk-Setup.exe
+          Write-Host "installer produced: $($exe.Name) -> ZenityX-Desk-Setup.exe"
 
-      - name: Upload Windows build
+      - name: Upload Windows build (portable folder)
         uses: actions/upload-artifact@v4
         with:
           name: ZenityX-Desk-Windows-x64
           path: ZenityX-Desk-Windows
+          retention-days: 14
+
+      - name: Upload installer (click-to-install)
+        uses: actions/upload-artifact@v4
+        with:
+          name: ZenityX-Desk-Setup
+          path: ZenityX-Desk-Setup.exe
           retention-days: 14
